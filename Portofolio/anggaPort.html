@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Angga Qomaruzzaman - Fullstack Dev</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        'deep-blue': '#0F2854',  /* Background Hero */
+                        'mid-blue': '#2A5C8D',   /* Primary Elements */
+                        'soft-blue': '#5D93B8',  /* Accents */
+                        'pale-blue': '#D6EAF8',  /* Light Background */
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        spinSlow: {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg)' },
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'spin-slow': 'spinSlow 20s linear infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* --- CORE ANIMATION STYLES (Fade In & Out) --- */
+        .reveal-element {
+            opacity: 0;
+            transform: translateY(50px) scale(0.95);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal-element.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Vector Ornaments */
+        .dots-pattern {
+            background-image: radial-gradient(#5D93B8 2px, transparent 2px);
+            background-size: 24px 24px;
+        }
+        
+        /* Layout Fixes */
+        .hero-container { align-items: flex-end; }
+        
+        /* Glass Nav */
+        .glass-nav {
+            background: rgba(15, 40, 84, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+    </style>
+</head>
+<body class="bg-pale-blue text-deep-blue antialiased selection:bg-mid-blue selection:text-white">
+
+    <nav class="fixed w-full z-50 transition-all duration-300 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-code text-soft-blue"></i>
+                        Angga<span class="text-soft-blue">.Dev</span>
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="text-white hover:text-soft-blue px-3 py-2 font-medium transition">Home</a>
+                        <a href="#skills" class="text-white/80 hover:text-white px-3 py-2 font-medium transition">Skills</a>
+                        <a href="#projects" class="text-white/80 hover:text-white px-3 py-2 font-medium transition">Projects</a>
+                        <a href="#experience" class="text-white/80 hover:text-white px-3 py-2 font-medium transition">Experience</a>
+                        <a href="#contact" class="bg-mid-blue text-white px-5 py-2 rounded-lg font-medium hover:bg-soft-blue transition shadow-lg shadow-mid-blue/50">Contact Me</a>
+                    </div>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-soft-blue text-2xl focus:outline-none">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="md:hidden hidden bg-deep-blue border-t border-white/10 absolute w-full shadow-2xl" id="mobile-menu">
+            <div class="px-4 pt-2 pb-4 space-y-1">
+                <a href="#home" class="block px-3 py-3 text-white font-medium hover:bg-white/5 rounded">Home</a>
+                <a href="#skills" class="block px-3 py-3 text-white font-medium hover:bg-white/5 rounded">Skills</a>
+                <a href="#projects" class="block px-3 py-3 text-white font-medium hover:bg-white/5 rounded">Projects</a>
+                <a href="#experience" class="block px-3 py-3 text-white font-medium hover:bg-white/5 rounded">Experience</a>
+                <a href="#contact" class="block px-3 py-3 text-soft-blue font-bold rounded">Contact Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="bg-deep-blue min-h-screen pt-24 flex items-center relative overflow-hidden">
+        <div class="absolute top-24 right-10 md:right-32 w-40 h-40 dots-pattern opacity-20 animate-float"></div>
+        <div class="absolute bottom-20 left-10 text-soft-blue opacity-30 animate-pulse">
+            <svg width="100" height="20" viewBox="0 0 100 20" fill="none" stroke="currentColor" stroke-width="4">
+                <path d="M0 10 L10 0 L20 10 L30 0 L40 10 L50 0 L60 10 L70 0 L80 10 L90 0" />
+            </svg>
+        </div>
+        <div class="absolute top-1/3 right-[45%] w-0 h-0 border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-b-[40px] border-b-mid-blue opacity-40 animate-spin-slow"></div>
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-mid-blue/10 rounded-full blur-[100px] -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-full relative z-10">
+            <div class="flex flex-col md:flex-row h-full items-center gap-8">
+                <div class="md:w-1/2 pt-8 md:pt-0 pb-12 text-center md:text-left reveal-element">
+
+                    <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
+                        Hi, I'm <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-soft-blue to-white">Angga Qomaruzzaman</span>
+                    </h1>
+                    <h2 class="text-xl md:text-2xl text-pale-blue/90 font-medium mb-6">
+                        IT Specialist & MERN Stack Dev
+                    </h2>
+                    <p class="text-pale-blue/60 text-lg mb-8 max-w-lg mx-auto md:mx-0 leading-relaxed font-light">
+                        IT Support Specialist with 2+ years of experience transitioning into Web Development. Passionate about building scalable applications using React, Node.js, and MongoDB.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <a href="#contact" class="px-8 py-3.5 bg-mid-blue text-white font-bold rounded-xl hover:bg-soft-blue transition shadow-lg shadow-mid-blue/30 transform hover:-translate-y-1">
+                            Hire Me Now
+                        </a>
+                        <a href="#" class="px-8 py-3.5 border border-white/20 text-white font-medium rounded-xl hover:bg-white/10 transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-download"></i> Download CV
+                        </a>
+                    </div>
+                    <div class="mt-10 flex gap-6 justify-center md:justify-start text-white/50">
+                        <a href="https://linkedin.com/in/angga-qomaruzzaman" class="hover:text-soft-blue transition text-2xl hover:scale-110"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="mailto:anggagomaruzzaman789@gmail.com" class="hover:text-soft-blue transition text-2xl hover:scale-110"><i class="fa-solid fa-envelope"></i></a>
+                        <a href="#" class="hover:text-soft-blue transition text-2xl hover:scale-110"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 h-[500px] md:h-[650px] flex justify-center md:justify-end hero-container relative reveal-element" style="transition-delay: 200ms;">
+                    <div class="absolute bottom-0 right-10 w-72 h-72 bg-gradient-to-t from-mid-blue to-transparent rounded-full opacity-30 blur-3xl"></div>
+                    <img src="./img/IDPhoto_20250419_201655.jpg" 
+                         alt="Angga Qomaruzzaman" 
+                         class="relative z-20 max-h-[90%] md:max-h-[100%] w-auto object-contain object-bottom drop-shadow-2xl hover:scale-105 transition duration-500">
+                    <div class="absolute top-1/3 left-0 md:-left-5 bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-2xl shadow-2xl z-30 animate-float">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-mid-blue rounded-lg flex items-center justify-center text-white text-xl">
+                                <i class="fa-brands fa-react"></i>
+                            </div>
+                            <div>
+                                <p class="text-white/60 text-[10px] uppercase font-bold tracking-widest">Stack</p>
+                                <p class="text-white font-bold text-sm">MERN Expert</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-24 bg-white relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal-element">
+                <span class="text-mid-blue font-bold tracking-wider uppercase text-sm bg-pale-blue px-3 py-1 rounded-full">My Arsenal</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-deep-blue mt-4">Technical Expertise</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-500 reveal-element">
+                    <div class="w-14 h-14 bg-pale-blue text-mid-blue rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-server"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-deep-blue mb-3">IT Operations</h3>
+                    <p class="text-sm text-slate-600 mb-6 leading-relaxed">
+                        Ensuring optimal system functionality through expert hardware troubleshooting and network management.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-50 text-slate-600 text-xs font-semibold rounded-lg border border-slate-100">Hardware</span>
+                        <span class="px-3 py-1 bg-slate-50 text-slate-600 text-xs font-semibold rounded-lg border border-slate-100">Network</span>
+                        <span class="px-3 py-1 bg-slate-50 text-slate-600 text-xs font-semibold rounded-lg border border-slate-100">Mikrotik</span>
+                    </div>
+                </div>
+                <div class="bg-deep-blue p-8 rounded-2xl border border-deep-blue shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-500 transform scale-105 z-10 reveal-element" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 bg-white/10 text-white rounded-xl flex items-center justify-center text-2xl mb-6 backdrop-blur-sm">
+                        <i class="fa-brands fa-react"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Fullstack Dev</h3>
+                    <p class="text-sm text-white/70 mb-6 leading-relaxed">
+                        Building modern, responsive web applications using the JavaScript ecosystem (MERN Stack).
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white/10 text-white text-xs font-semibold rounded-lg">React.js</span>
+                        <span class="px-3 py-1 bg-white/10 text-white text-xs font-semibold rounded-lg">Node.js</span>
+                        <span class="px-3 py-1 bg-white/10 text-white text-xs font-semibold rounded-lg">MongoDB</span>
+                        <span class="px-3 py-1 bg-white/10 text-white text-xs font-semibold rounded-lg">Tailwind</span>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-500 reveal-element" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 bg-pale-blue text-mid-blue rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-database"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-deep-blue mb-3">Data & Admin</h3>
+                    <p class="text-sm text-slate-600 mb-6 leading-relaxed">
+                        Efficient SQL database management and organized administrative support with precise documentation.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-50 text-slate-600 text-xs font-semibold rounded-lg border border-slate-100">MySQL</span>
+                        <span class="px-3 py-1 bg-slate-50 text-slate-600 text-xs font-semibold rounded-lg border border-slate-100">Ms. Office</span>
+                        <span class="px-3 py-1 bg-slate-50 text-slate-600 text-xs font-semibold rounded-lg border border-slate-100">Reporting</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-24 bg-pale-blue relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal-element">
+                <span class="text-mid-blue font-bold tracking-wider uppercase text-sm bg-white px-3 py-1 rounded-full shadow-sm">Portfolio</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-deep-blue mt-4">Featured Projects</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-500 group reveal-element">
+                    <div class="h-48 bg-deep-blue relative overflow-hidden group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-deep-blue to-transparent opacity-80"></div>
+                        <i class="fa-solid fa-film absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-6xl text-white/20 group-hover:scale-110 transition duration-500"></i>
+                        <span class="absolute bottom-4 left-4 bg-mid-blue text-white text-xs font-bold px-3 py-1 rounded-full">Web App</span>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-deep-blue mb-2">Streaming Film Platform</h3>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-3">
+                            A responsive web application for streaming movies. Built with reusable components for easy maintenance and high performance.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-2 py-1 bg-pale-blue text-mid-blue text-xs font-semibold rounded">React.js</span>
+                            <span class="px-2 py-1 bg-pale-blue text-mid-blue text-xs font-semibold rounded">Tailwind CSS</span>
+                            <span class="px-2 py-1 bg-pale-blue text-mid-blue text-xs font-semibold rounded">Firebase</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="#" class="flex-1 text-center py-2 border border-mid-blue text-mid-blue font-bold rounded-lg hover:bg-mid-blue hover:text-white transition text-sm">
+                                <i class="fa-brands fa-github mr-2"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-500 group reveal-element" style="transition-delay: 100ms;">
+                    <div class="h-48 bg-slate-800 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-80"></div>
+                        <i class="fa-solid fa-server absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-6xl text-white/20 group-hover:scale-110 transition duration-500"></i>
+                        <span class="absolute bottom-4 left-4 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full">Backend API</span>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-deep-blue mb-2">RESTful API Service</h3>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-3">
+                            Backend service for user data management and authentication. Implements CRUD operations with JWT security.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-2 py-1 bg-pale-blue text-mid-blue text-xs font-semibold rounded">Node.js</span>
+                            <span class="px-2 py-1 bg-pale-blue text-mid-blue text-xs font-semibold rounded">Express</span>
+                            <span class="px-2 py-1 bg-pale-blue text-mid-blue text-xs font-semibold rounded">MongoDB</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="#" class="w-full text-center py-2 border border-mid-blue text-mid-blue font-bold rounded-lg hover:bg-mid-blue hover:text-white transition text-sm">
+                                <i class="fa-brands fa-github mr-2"></i> Repository
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-24 bg-white relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal-element">
+                <h2 class="text-3xl font-bold text-deep-blue">Career & Education</h2>
+                <p class="text-slate-500 mt-2">Professional Experience Log</p>
+            </div>
+
+            <div class="relative border-l-2 border-slate-200 ml-8 md:ml-12 space-y-20">
+                
+                <div class="relative pl-24 md:pl-32 group reveal-element">
+                    <div class="absolute -left-8 md:-left-12 top-0 w-16 h-16 md:w-24 md:h-24 bg-white flex items-center justify-center group-hover:scale-105 transition z-10">
+                        <img src="./img/kyoraku-baru.png" alt="Kyoraku Logo" class="w-full h-full object-contain">
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition border border-slate-100">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
+                            <h3 class="text-xl font-bold text-deep-blue">IT Helpdesk & HRGA Admin</h3>
+                            <span class="text-xs font-bold text-mid-blue bg-pale-blue px-3 py-1 rounded-full mt-2 sm:mt-0 w-fit">Apr 2024 - Present</span>
+                        </div>
+                        <p class="text-slate-600 font-medium mb-3">PT. Kyoraku Blowmolding Indonesia</p>
+                        <ul class="list-disc list-outside ml-4 text-sm text-slate-500 space-y-2">
+                            <li>Provide technical assistance and troubleshooting hardware/software/network in manufacturing environment.</li>
+                            <li>Monitor IT infrastructure and manage IT assets.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="relative pl-24 md:pl-32 group reveal-element">
+                    <div class="absolute -left-8 md:-left-12 top-0 w-16 h-16 md:w-24 md:h-24 bg-white flex items-center justify-center group-hover:scale-105 transition z-10">
+                        <img src="./img/download.svg" alt="Harisenin Logo" class="w-full h-full object-contain">
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition border border-slate-100">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
+                            <h3 class="text-xl font-bold text-deep-blue">Fullstack Web Developer</h3>
+                            <span class="text-xs font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-full mt-2 sm:mt-0 w-fit">4 Months Intensive</span>
+                        </div>
+                        <p class="text-slate-600 font-medium mb-3">Harisenin.com</p>
+                        <p class="text-sm text-slate-500">
+                            Intensive bootcamp mastering MERN Stack. Learned Data Structures, Redux State Management, and deployed real-world projects.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative pl-24 md:pl-32 group reveal-element">
+                    <div class="absolute -left-8 md:-left-12 top-0 w-16 h-16 md:w-24 md:h-24 bg-white flex items-center justify-center group-hover:scale-105 transition z-10">
+                        <img src="./img/LOGO_LSP_DITEKINDO_2023.png" alt="BNSP Logo" class="w-full h-full object-contain">
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition border border-slate-100">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
+                            <h3 class="text-xl font-bold text-deep-blue">Web Developer Certification</h3>
+                            <span class="text-xs font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-full mt-2 sm:mt-0 w-fit">Dec 2025</span>
+                        </div>
+                        <p class="text-slate-600 font-medium mb-3">Syntax Training Center & LSP Ditekindo</p>
+                        <p class="text-sm text-slate-500">
+                            Created MVP projects with CRUD & API using Laravel framework. Certified by BNSP assessor.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative pl-24 md:pl-32 group reveal-element">
+                    <div class="absolute -left-8 md:-left-12 top-0 w-16 h-16 md:w-24 md:h-24 bg-white flex items-center justify-center group-hover:scale-105 transition z-10">
+                        <img src="./img/Logo-Universitas-Pelita-Bangsa-UPB-Format-PNG-CDR-EPS-SVG-PDF-AI-300x228.png" alt="UPB Logo" class="w-full h-full object-contain">
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition border border-slate-100">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
+                            <h3 class="text-xl font-bold text-deep-blue">Informatics Engineering (S1)</h3>
+                            <span class="text-xs font-bold text-white bg-green-500 px-3 py-1 rounded-full mt-2 sm:mt-0 w-fit">On Progress</span>
+                        </div>
+                        <p class="text-slate-600 font-medium">Universitas Pelita Bangsa</p>
+                        <p class="text-xs text-slate-400 mt-2 font-mono bg-slate-50 inline-block px-2 py-1 rounded border border-slate-200">
+                            <i class="fa-solid fa-id-card mr-1"></i> NIM: 31231234567
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-deep-blue text-white py-20 border-t border-white/10 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-deep-blue via-soft-blue to-deep-blue"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 text-center reveal-element">
+            <h2 class="text-3xl font-bold mb-8">Ready to Collaborate?</h2>
+            <p class="text-pale-blue/60 mb-12 max-w-xl mx-auto">
+                I am open to discussing Web Development projects or professional IT Support opportunities.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-6 mb-12">
+                <a href="https://wa.me/628897362933" class="group flex items-center justify-center gap-3 px-6 py-4 bg-white/5 rounded-xl hover:bg-white/10 transition border border-white/10 w-full md:w-auto">
+                    <i class="fa-brands fa-whatsapp text-2xl text-green-400 group-hover:scale-110 transition"></i>
+                    <div class="text-left">
+                        <p class="text-[10px] text-white/50 uppercase tracking-widest">WhatsApp</p>
+                        <p class="font-bold text-sm">0889-7362-933</p>
+                    </div>
+                </a>
+                <a href="mailto:anggagomaruzzaman789@gmail.com" class="group flex items-center justify-center gap-3 px-6 py-4 bg-white/5 rounded-xl hover:bg-white/10 transition border border-white/10 w-full md:w-auto">
+                    <i class="fa-regular fa-envelope text-2xl text-soft-blue group-hover:scale-110 transition"></i>
+                    <div class="text-left">
+                        <p class="text-[10px] text-white/50 uppercase tracking-widest">Email</p>
+                        <p class="font-bold text-sm">anggagomaruzzaman789...</p>
+                    </div>
+                </a>
+                <a href="https://linkedin.com/in/angga-qomaruzzaman" class="group flex items-center justify-center gap-3 px-6 py-4 bg-white/5 rounded-xl hover:bg-white/10 transition border border-white/10 w-full md:w-auto">
+                    <i class="fa-brands fa-linkedin text-2xl text-blue-500 group-hover:scale-110 transition"></i>
+                    <div class="text-left">
+                        <p class="text-[10px] text-white/50 uppercase tracking-widest">LinkedIn</p>
+                        <p class="font-bold text-sm">Angga Qomaruzzaman</p>
+                    </div>
+                </a>
+            </div>
+            <p class="text-white/30 text-xs tracking-wider">&copy; 2026 Angga Qomaruzzaman. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15 
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else {
+                    entry.target.classList.remove('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-element').forEach((el) => {
+            observer.observe(el);
+        });
+
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
