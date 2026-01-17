@@ -32,11 +32,17 @@
                         spinSlow: {
                             '0%': { transform: 'rotate(0deg)' },
                             '100%': { transform: 'rotate(360deg)' },
+                        },
+                        morph: {
+                            '0%': { borderRadius: '60% 40% 30% 70%/60% 30% 70% 40%' },
+                            '50%': { borderRadius: '30% 60% 70% 40%/50% 60% 30% 60%' },
+                            '100%': { borderRadius: '60% 40% 30% 70%/60% 30% 70% 40%' },
                         }
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'spin-slow': 'spinSlow 20s linear infinite',
+                        'morph': 'morph 8s ease-in-out infinite',
                     }
                 }
             }
@@ -60,9 +66,6 @@
             background-image: radial-gradient(#5D93B8 2px, transparent 2px);
             background-size: 24px 24px;
         }
-        
-        /* Layout Fixes */
-        .hero-container { align-items: flex-end; }
         
         /* Glass Nav */
         .glass-nav {
@@ -88,7 +91,7 @@
                         <a href="#home" class="text-white hover:text-soft-blue px-3 py-2 font-medium transition">Home</a>
                         <a href="#skills" class="text-white/80 hover:text-white px-3 py-2 font-medium transition">Skills</a>
                         <a href="#projects" class="text-white/80 hover:text-white px-3 py-2 font-medium transition">Projects</a>
-                        <a href="#experience" class="text-white/80 hover:text-white px-3 py-2 font-medium transition">Experience</a>
+                        <a href="#experience" class="text-white/80 hover:text-white px-3 py-2 font-medium transition">Resume</a>
                         <a href="#contact" class="bg-mid-blue text-white px-5 py-2 rounded-lg font-medium hover:bg-soft-blue transition shadow-lg shadow-mid-blue/50">Contact Me</a>
                     </div>
                 </div>
@@ -104,7 +107,7 @@
                 <a href="#home" class="block px-3 py-3 text-white font-medium hover:bg-white/5 rounded">Home</a>
                 <a href="#skills" class="block px-3 py-3 text-white font-medium hover:bg-white/5 rounded">Skills</a>
                 <a href="#projects" class="block px-3 py-3 text-white font-medium hover:bg-white/5 rounded">Projects</a>
-                <a href="#experience" class="block px-3 py-3 text-white font-medium hover:bg-white/5 rounded">Experience</a>
+                <a href="#experience" class="block px-3 py-3 text-white font-medium hover:bg-white/5 rounded">Resume</a>
                 <a href="#contact" class="block px-3 py-3 text-soft-blue font-bold rounded">Contact Me</a>
             </div>
         </div>
@@ -117,7 +120,6 @@
                 <path d="M0 10 L10 0 L20 10 L30 0 L40 10 L50 0 L60 10 L70 0 L80 10 L90 0" />
             </svg>
         </div>
-        <div class="absolute top-1/3 right-[45%] w-0 h-0 border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-b-[40px] border-b-mid-blue opacity-40 animate-spin-slow"></div>
         <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-mid-blue/10 rounded-full blur-[100px] -z-10"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-full relative z-10">
@@ -148,11 +150,19 @@
                         <a href="#" class="hover:text-soft-blue transition text-2xl hover:scale-110"><i class="fa-brands fa-github"></i></a>
                     </div>
                 </div>
-                <div class="md:w-1/2 h-[500px] md:h-[650px] flex justify-center md:justify-end hero-container relative reveal-element" style="transition-delay: 200ms;">
-                    <div class="absolute bottom-0 right-10 w-72 h-72 bg-gradient-to-t from-mid-blue to-transparent rounded-full opacity-30 blur-3xl"></div>
-                    <img src="./img/IDPhoto_20250419_201655.jpg" 
+                
+                <div class="md:w-1/2 h-[500px] md:h-[650px] flex justify-center items-end relative reveal-element" style="transition-delay: 200ms;">
+                    <div class="absolute inset-0 flex items-center justify-center -z-10">
+                        <div class="w-[350px] h-[350px] md:w-[450px] md:h-[450px] bg-gradient-to-tr from-mid-blue to-soft-blue opacity-40 animate-morph absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 blur-lg"></div>
+                        
+                        <div class="absolute w-[400px] h-[400px] border border-white/10 rounded-full animate-spin-slow"></div>
+                        <div class="absolute w-[300px] h-[300px] border-2 border-dashed border-white/5 rounded-full animate-spin-slow" style="animation-direction: reverse;"></div>
+                    </div>
+
+                    <img src="./img/new.png" 
                          alt="Angga Qomaruzzaman" 
-                         class="relative z-20 max-h-[90%] md:max-h-[100%] w-auto object-contain object-bottom drop-shadow-2xl hover:scale-105 transition duration-500">
+                         class="relative z-20 max-h-[85%] md:max-h-[90%] w-auto object-contain object-bottom drop-shadow-2xl hover:scale-105 transition duration-500 mask-image-gradient">
+                    
                     <div class="absolute top-1/3 left-0 md:-left-5 bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-2xl shadow-2xl z-30 animate-float">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 bg-mid-blue rounded-lg flex items-center justify-center text-white text-xl">
@@ -160,7 +170,7 @@
                             </div>
                             <div>
                                 <p class="text-white/60 text-[10px] uppercase font-bold tracking-widest">Stack</p>
-                                <p class="text-white font-bold text-sm">MERN Expert</p>
+                                <p class="text-white font-bold text-sm">MERN</p>
                             </div>
                         </div>
                     </div>
@@ -280,18 +290,22 @@
         </div>
     </section>
 
-    <section id="experience" class="py-24 bg-white relative">
+    <section id="experience" class="py-20 bg-white relative border-b border-slate-100">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 reveal-element">
-                <h2 class="text-3xl font-bold text-deep-blue">Career & Education</h2>
-                <p class="text-slate-500 mt-2">Professional Experience Log</p>
+            <div class="flex items-center gap-4 mb-12 reveal-element">
+                <div class="w-12 h-12 rounded-full bg-pale-blue flex items-center justify-center text-mid-blue text-xl">
+                    <i class="fa-solid fa-briefcase"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-deep-blue">Professional Experience</h2>
+                    <p class="text-slate-500 text-sm">My professional career journey</p>
+                </div>
             </div>
 
-            <div class="relative border-l-2 border-slate-200 ml-8 md:ml-12 space-y-20">
-                
-                <div class="relative pl-24 md:pl-32 group reveal-element">
-                    <div class="absolute -left-8 md:-left-12 top-0 w-16 h-16 md:w-24 md:h-24 bg-white flex items-center justify-center group-hover:scale-105 transition z-10">
-                        <img src="./img/kyoraku-baru.png" alt="Kyoraku Logo" class="w-full h-full object-contain">
+            <div class="relative border-l-2 border-slate-200 ml-6 md:ml-6 space-y-12">
+                <div class="relative pl-12 md:pl-16 group reveal-element">
+                    <div class="absolute -left-6 top-0 w-12 h-12 bg-white border border-slate-200 rounded-full flex items-center justify-center group-hover:scale-110 transition z-10 p-2">
+                        <img src="./img/kyoraku-baru.png" alt="Kyoraku" class="w-full h-full object-contain">
                     </div>
                     
                     <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition border border-slate-100">
@@ -302,62 +316,88 @@
                         <p class="text-slate-600 font-medium mb-3">PT. Kyoraku Blowmolding Indonesia</p>
                         <ul class="list-disc list-outside ml-4 text-sm text-slate-500 space-y-2">
                             <li>Provide technical assistance and troubleshooting hardware/software/network in manufacturing environment.</li>
-                            <li>Monitor IT infrastructure and manage IT assets.</li>
+                            <li>Monitor IT infrastructure and manage IT assets efficiently.</li>
+                            <li>Support HRGA administration tasks and documentation.</li>
                         </ul>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="relative pl-24 md:pl-32 group reveal-element">
-                    <div class="absolute -left-8 md:-left-12 top-0 w-16 h-16 md:w-24 md:h-24 bg-white flex items-center justify-center group-hover:scale-105 transition z-10">
-                        <img src="./img/download.svg" alt="Harisenin Logo" class="w-full h-full object-contain">
-                    </div>
+    <section id="education" class="py-20 bg-slate-50 relative border-b border-slate-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-4 mb-12 reveal-element">
+                <div class="w-12 h-12 rounded-full bg-white border border-slate-200 flex items-center justify-center text-mid-blue text-xl">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-deep-blue">Education History</h2>
+                    <p class="text-slate-500 text-sm">Academic degrees and bootcamps</p>
+                </div>
+            </div>
 
-                    <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition border border-slate-100">
-                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
-                            <h3 class="text-xl font-bold text-deep-blue">Fullstack Web Developer</h3>
-                            <span class="text-xs font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-full mt-2 sm:mt-0 w-fit">4 Months Intensive</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-mid-blue/30 transition reveal-element">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="w-12 h-12 bg-slate-50 rounded-lg p-2 flex items-center justify-center">
+                            <img src="./img/Logo-Universitas-Pelita-Bangsa-UPB-Format-PNG-CDR-EPS-SVG-PDF-AI-300x228.png" alt="UPB" class="w-full h-full object-contain">
                         </div>
-                        <p class="text-slate-600 font-medium mb-3">Harisenin.com</p>
-                        <p class="text-sm text-slate-500">
-                            Intensive bootcamp mastering MERN Stack. Learned Data Structures, Redux State Management, and deployed real-world projects.
-                        </p>
+                        <span class="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded">On Progress</span>
                     </div>
+                    <h3 class="text-lg font-bold text-deep-blue">Informatics Engineering (S1)</h3>
+                    <p class="text-slate-600 text-sm mb-2">Universitas Pelita Bangsa</p>
+                    <p class="text-xs text-slate-400 font-mono">
+                        <i class="fa-solid fa-id-card mr-1"></i> NIM: 31231234567
+                    </p>
                 </div>
 
-                <div class="relative pl-24 md:pl-32 group reveal-element">
-                    <div class="absolute -left-8 md:-left-12 top-0 w-16 h-16 md:w-24 md:h-24 bg-white flex items-center justify-center group-hover:scale-105 transition z-10">
-                        <img src="./img/LOGO_LSP_DITEKINDO_2023.png" alt="BNSP Logo" class="w-full h-full object-contain">
-                    </div>
-
-                    <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition border border-slate-100">
-                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
-                            <h3 class="text-xl font-bold text-deep-blue">Web Developer Certification</h3>
-                            <span class="text-xs font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-full mt-2 sm:mt-0 w-fit">Dec 2025</span>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-mid-blue/30 transition reveal-element" style="transition-delay: 100ms;">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="w-12 h-12 bg-slate-50 rounded-lg p-2 flex items-center justify-center">
+                            <img src="./img/download.svg" alt="Harisenin" class="w-full h-full object-contain">
                         </div>
-                        <p class="text-slate-600 font-medium mb-3">Syntax Training Center & LSP Ditekindo</p>
-                        <p class="text-sm text-slate-500">
-                            Created MVP projects with CRUD & API using Laravel framework. Certified by BNSP assessor.
+                        <span class="text-xs font-bold text-slate-500 bg-slate-100 px-2 py-1 rounded">Completed</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-deep-blue">Fullstack Web Developer</h3>
+                    <p class="text-slate-600 text-sm mb-2">Harisenin.com Bootcamp</p>
+                    <p class="text-xs text-slate-500">
+                        Intensive bootcamp mastering MERN Stack, Data Structures, and Redux State Management.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certification" class="py-20 bg-white relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-4 mb-12 reveal-element">
+                <div class="w-12 h-12 rounded-full bg-pale-blue flex items-center justify-center text-mid-blue text-xl">
+                    <i class="fa-solid fa-certificate"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-deep-blue">Certifications</h2>
+                    <p class="text-slate-500 text-sm">Professional validations</p>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-deep-blue to-mid-blue p-1 rounded-2xl reveal-element">
+                <div class="bg-white p-6 rounded-xl h-full flex flex-col sm:flex-row items-center gap-6">
+                    <div class="w-20 h-20 flex-shrink-0 bg-slate-50 rounded-full p-3 flex items-center justify-center border border-slate-100">
+                        <img src="./img/LOGO_LSP_DITEKINDO_2023.png" alt="BNSP" class="w-full h-full object-contain">
+                    </div>
+                    <div class="flex-grow text-center sm:text-left">
+                        <h3 class="text-xl font-bold text-deep-blue">Web Developer Certification (BNSP)</h3>
+                        <p class="text-slate-600 font-medium text-sm mb-2">Issued by LSP Ditekindo & Syntax Training Center</p>
+                        <p class="text-sm text-slate-500 leading-relaxed">
+                            Competency certification for Web Development using Laravel Framework. Validated skills in creating CRUD applications, API integration, and Database Management.
                         </p>
                     </div>
-                </div>
-
-                <div class="relative pl-24 md:pl-32 group reveal-element">
-                    <div class="absolute -left-8 md:-left-12 top-0 w-16 h-16 md:w-24 md:h-24 bg-white flex items-center justify-center group-hover:scale-105 transition z-10">
-                        <img src="./img/Logo-Universitas-Pelita-Bangsa-UPB-Format-PNG-CDR-EPS-SVG-PDF-AI-300x228.png" alt="UPB Logo" class="w-full h-full object-contain">
-                    </div>
-
-                    <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition border border-slate-100">
-                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
-                            <h3 class="text-xl font-bold text-deep-blue">Informatics Engineering (S1)</h3>
-                            <span class="text-xs font-bold text-white bg-green-500 px-3 py-1 rounded-full mt-2 sm:mt-0 w-fit">On Progress</span>
-                        </div>
-                        <p class="text-slate-600 font-medium">Universitas Pelita Bangsa</p>
-                        <p class="text-xs text-slate-400 mt-2 font-mono bg-slate-50 inline-block px-2 py-1 rounded border border-slate-200">
-                            <i class="fa-solid fa-id-card mr-1"></i> NIM: 31231234567
-                        </p>
+                    <div class="flex-shrink-0">
+                        <span class="block text-center text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Date Issued</span>
+                        <span class="block text-center font-bold text-deep-blue bg-pale-blue px-4 py-2 rounded-lg">Dec 2025</span>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
