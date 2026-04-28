@@ -1,323 +1,668 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio Angga Qomaruzzaman - Fullstack Dev</title>
-    
+    <title>Angga Qomaruzzaman — Fullstack Developer</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['Poppins', 'sans-serif'] },
                     colors: {
-                        'deep-blue': '#0F2854',  /* Background Hero */
-                        'mid-blue': '#2A5C8D',   /* Primary Elements */
-                        'soft-blue': '#5D93B8',  /* Accents */
-                        'pale-blue': '#D6EAF8',  /* Light Background */
+                        'deep-blue': '#0F2854',
+                        'mid-blue': '#2A5C8D',
+                        'soft-blue': '#5D93B8',
+                        'pale-blue': '#D6EAF8',
                     },
                     keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-15px)' },
-                        },
-                        spinSlow: {
-                            '0%': { transform: 'rotate(0deg)' },
-                            '100%': { transform: 'rotate(360deg)' },
-                        },
-                        morph: {
-                            '0%': { borderRadius: '60% 40% 30% 70%/60% 30% 70% 40%' },
-                            '50%': { borderRadius: '30% 60% 70% 40%/50% 60% 30% 60%' },
-                            '100%': { borderRadius: '60% 40% 30% 70%/60% 30% 70% 40%' },
-                        }
+                        float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-15px)' } },
+                        spinSlow: { '0%': { transform: 'rotate(0deg)' }, '100%': { transform: 'rotate(360deg)' } },
+                        morph: { '0%': { borderRadius: '60% 40% 30% 70%/60% 30% 70% 40%' }, '50%': { borderRadius: '30% 60% 70% 40%/50% 60% 30% 60%' }, '100%': { borderRadius: '60% 40% 30% 70%/60% 30% 70% 40%' } },
+                        shimmer: { '0%': { backgroundPosition: '-200% 0' }, '100%': { backgroundPosition: '200% 0' } },
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'spin-slow': 'spinSlow 20s linear infinite',
                         'morph': 'morph 8s ease-in-out infinite',
+                        'shimmer': 'shimmer 3s infinite linear',
                     }
                 }
             }
         }
     </script>
-    
+
     <style>
-        /* --- CORE ANIMATION STYLES (Fade In & Out) --- */
+        /* ── Reveal animation ─────────────────────────── */
         .reveal-element {
             opacity: 0;
-            transform: translateY(50px) scale(0.95);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateY(40px) scale(0.97);
+            transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
+
         .reveal-element.active {
             opacity: 1;
             transform: translateY(0) scale(1);
         }
 
-        /* Vector Ornaments */
+        /* ── Dots decorative bg ───────────────────────── */
         .dots-pattern {
             background-image: radial-gradient(#5D93B8 2px, transparent 2px);
             background-size: 24px 24px;
         }
-        
-        /* Glass Nav */
+
+        /* ── Glass nav ────────────────────────────────── */
         .glass-nav {
-            background: rgba(15, 40, 84, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            background: rgba(15, 40, 84, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* ── Photo upload wrapper ─────────────────────── */
+        .photo-wrapper {
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .photo-edit-overlay {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: rgba(15, 40, 84, 0.6);
+            backdrop-filter: blur(4px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 600;
+            gap: 4px;
+        }
+
+        .photo-wrapper:hover .photo-edit-overlay {
+            opacity: 1;
+        }
+
+        /* ── CV button states ─────────────────────────── */
+        .cv-btn-no-file {
+            border-style: dashed !important;
+            border-color: rgba(255, 255, 255, 0.25) !important;
+        }
+
+        .cv-btn-has-file {
+            border-color: rgba(93, 147, 184, 0.6) !important;
+        }
+
+        /* ── Project card hover ───────────────────────── */
+        .project-card {
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 48px -12px rgba(15, 40, 84, 0.35);
+        }
+
+        /* ── Tag badges ───────────────────────────────── */
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 10px;
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        /* ── Shimmer progress bars ────────────────────── */
+        .skill-bar {
+            background: linear-gradient(90deg, #2A5C8D 0%, #5D93B8 50%, #2A5C8D 100%);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite linear;
+        }
+
+        /* ── Upload toast ─────────────────────────────── */
+        #upload-toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999;
+            background: #0F2854;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transform: translateY(80px);
+            opacity: 0;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(93, 147, 184, 0.4);
+        }
+
+        #upload-toast.show {
+            transform: translateY(0);
+            opacity: 1;
         }
     </style>
 </head>
+
+<!-- Hidden file inputs (must be outside form for programmatic trigger) -->
+<input type="file" id="photo-input" accept="image/*" class="hidden">
+<input type="file" id="cv-input" accept=".pdf,.doc,.docx" class="hidden">
+
+<!-- Toast notification -->
+<div id="upload-toast">
+    <i class="fa-solid fa-circle-check mr-2 text-green-400"></i>
+    <span id="toast-msg">Berhasil diupload!</span>
+</div>
+
 <body class="bg-pale-blue text-deep-blue antialiased selection:bg-mid-blue selection:text-white">
 
+    <!-- ══════════════════════════════════════════════════
+     NAV
+══════════════════════════════════════════════════ -->
     <nav class="fixed w-full z-50 transition-all duration-300 glass-nav">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="text-2xl font-bold text-white flex items-center gap-2">
-                        <i class="fa-solid fa-code text-soft-blue"></i>
-                        Angga<span class="text-soft-blue">.Dev</span>
-                    </a>
+            <div class="flex justify-between items-center h-16">
+                <a href="#" class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-code text-soft-blue"></i>
+                    Angga<span class="text-soft-blue">.Dev</span>
+                </a>
+                <div class="hidden md:flex items-baseline space-x-6">
+                    <a href="#home"
+                        class="text-white hover:text-soft-blue px-3 py-2 font-medium transition text-sm">Home</a>
+                    <a href="#skills"
+                        class="text-white/70 hover:text-white px-3 py-2 font-medium transition text-sm">Skills</a>
+                    <a href="#projects"
+                        class="text-white/70 hover:text-white px-3 py-2 font-medium transition text-sm">Projects</a>
+                    <a href="#experience"
+                        class="text-white/70 hover:text-white px-3 py-2 font-medium transition text-sm">Resume</a>
+                    <a href="#contact"
+                        class="bg-mid-blue text-white px-5 py-2 rounded-lg font-semibold hover:bg-soft-blue transition shadow-lg shadow-mid-blue/40 text-sm">Contact
+                        Me</a>
                 </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#home" class="text-white hover:text-soft-blue px-3 py-2 font-medium transition">Home</a>
-                        <a href="#skills" class="text-white/80 hover:text-white px-3 py-2 font-medium transition">Skills</a>
-                        <a href="#projects" class="text-white/80 hover:text-white px-3 py-2 font-medium transition">Projects</a>
-                        <a href="#experience" class="text-white/80 hover:text-white px-3 py-2 font-medium transition">Resume</a>
-                        <a href="#contact" class="bg-mid-blue text-white px-5 py-2 rounded-lg font-medium hover:bg-soft-blue transition shadow-lg shadow-mid-blue/50">Contact Me</a>
-                    </div>
-                </div>
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-white hover:text-soft-blue text-2xl focus:outline-none">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-white text-xl focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
             </div>
         </div>
         <div class="md:hidden hidden bg-deep-blue border-t border-white/10 absolute w-full shadow-2xl" id="mobile-menu">
             <div class="px-4 pt-2 pb-4 space-y-1">
-                <a href="#home" class="block px-3 py-3 text-white font-medium hover:bg-white/5 rounded">Home</a>
-                <a href="#skills" class="block px-3 py-3 text-white font-medium hover:bg-white/5 rounded">Skills</a>
-                <a href="#projects" class="block px-3 py-3 text-white font-medium hover:bg-white/5 rounded">Projects</a>
-                <a href="#experience" class="block px-3 py-3 text-white font-medium hover:bg-white/5 rounded">Resume</a>
-                <a href="#contact" class="block px-3 py-3 text-soft-blue font-bold rounded">Contact Me</a>
+                <a href="#home" class="block px-3 py-3 text-white font-medium hover:bg-white/5 rounded text-sm">Home</a>
+                <a href="#skills"
+                    class="block px-3 py-3 text-white font-medium hover:bg-white/5 rounded text-sm">Skills</a>
+                <a href="#projects"
+                    class="block px-3 py-3 text-white font-medium hover:bg-white/5 rounded text-sm">Projects</a>
+                <a href="#experience"
+                    class="block px-3 py-3 text-white font-medium hover:bg-white/5 rounded text-sm">Resume</a>
+                <a href="#contact" class="block px-3 py-3 text-soft-blue font-bold rounded text-sm">Contact Me</a>
             </div>
         </div>
     </nav>
 
-    <section id="home" class="bg-deep-blue min-h-screen pt-24 flex items-center relative overflow-hidden">
+    <!-- ══════════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════════ -->
+    <section id="home" class="bg-deep-blue min-h-screen pt-20 flex items-center relative overflow-hidden">
         <div class="absolute top-24 right-10 md:right-32 w-40 h-40 dots-pattern opacity-20 animate-float"></div>
         <div class="absolute bottom-20 left-10 text-soft-blue opacity-30 animate-pulse">
             <svg width="100" height="20" viewBox="0 0 100 20" fill="none" stroke="currentColor" stroke-width="4">
                 <path d="M0 10 L10 0 L20 10 L30 0 L40 10 L50 0 L60 10 L70 0 L80 10 L90 0" />
             </svg>
         </div>
-        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-mid-blue/10 rounded-full blur-[100px] -z-10"></div>
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-mid-blue/10 rounded-full blur-[120px] -z-10"></div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-full relative z-10">
-            <div class="flex flex-col md:flex-row h-full items-center gap-8">
-                <div class="md:w-1/2 pt-8 md:pt-0 pb-12 text-center md:text-left reveal-element">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+            <div class="flex flex-col md:flex-row items-center gap-10">
 
-                    <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
-                        Hi, I'm <br>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-soft-blue to-white">Angga Qomaruzzaman</span>
+                <!-- Text -->
+                <div class="md:w-1/2 pt-8 md:pt-0 pb-10 text-center md:text-left reveal-element">
+                    <span
+                        class="inline-block text-soft-blue text-xs font-bold tracking-[0.2em] uppercase mb-4 bg-white/5 px-4 py-1.5 rounded-full border border-white/10">
+                        Open to Work
+                    </span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-5">
+                        Hi, I'm<br>
+                        <span class="text-soft-blue">Angga</span> Qomaruzzaman
                     </h1>
-                    <h2 class="text-xl md:text-2xl text-pale-blue/90 font-medium mb-6">
-                        IT Specialist & MERN Stack Dev
+                    <h2 class="text-lg md:text-xl text-pale-blue/80 font-medium mb-5">
+                        IT Specialist &amp; Fullstack Developer
                     </h2>
-                    <p class="text-pale-blue/60 text-lg mb-8 max-w-lg mx-auto md:mx-0 leading-relaxed font-light">
-                        IT Support Specialist with 2+ years of experience transitioning into Web Development. Passionate about building scalable applications using React, Node.js, and MongoDB.
+                    <p class="text-pale-blue/55 text-base mb-8 max-w-lg mx-auto md:mx-0 leading-relaxed">
+                        IT Support Specialist with 2+ years of experience, now building scalable web applications with
+                        React, FastAPI, and MongoDB. I turn operational problems into elegant software.
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                        <a href="#contact" class="px-8 py-3.5 bg-mid-blue text-white font-bold rounded-xl hover:bg-soft-blue transition shadow-lg shadow-mid-blue/30 transform hover:-translate-y-1">
-                            Hire Me Now
+
+                    <div class="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+                        <a href="#contact"
+                            class="px-7 py-3 bg-mid-blue text-white font-bold rounded-xl hover:bg-soft-blue transition shadow-lg shadow-mid-blue/30 transform hover:-translate-y-1 text-sm">
+                            Hire Me
                         </a>
-                        <a href="#" class="px-8 py-3.5 border border-white/20 text-white font-medium rounded-xl hover:bg-white/10 transition flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-download"></i> Download CV
-                        </a>
+                        <!-- CV Download/Upload button -->
+                        <button id="cv-btn"
+                            class="cv-btn-no-file px-7 py-3 border border-white/20 text-white font-medium rounded-xl hover:bg-white/10 transition flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-solid fa-file-arrow-down"></i>
+                            <span id="cv-btn-label">Upload CV</span>
+                        </button>
                     </div>
-                    <div class="mt-10 flex gap-6 justify-center md:justify-start text-white/50">
-                        <a href="https://linkedin.com/in/angga-qomaruzzaman" class="hover:text-soft-blue transition text-2xl hover:scale-110"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="mailto:anggagomaruzzaman789@gmail.com" class="hover:text-soft-blue transition text-2xl hover:scale-110"><i class="fa-solid fa-envelope"></i></a>
-                        <a href="#" class="hover:text-soft-blue transition text-2xl hover:scale-110"><i class="fa-brands fa-github"></i></a>
+
+                    <div class="mt-8 flex gap-5 justify-center md:justify-start text-white/40">
+                        <a href="https://linkedin.com/in/angga-qomaruzzaman" target="_blank"
+                            class="hover:text-soft-blue transition text-xl hover:scale-110">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:anggaqomaruzzaman65@gmail.com"
+                            class="hover:text-soft-blue transition text-xl hover:scale-110">
+                            <i class="fa-solid fa-envelope"></i>
+                        </a>
+                        <a href="https://github.com/anggaqomaruzzaman091-rgb" target="_blank"
+                            class="hover:text-soft-blue transition text-xl hover:scale-110">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
                     </div>
                 </div>
-                
-                <div class="md:w-1/2 h-[500px] md:h-[650px] flex justify-center items-end relative reveal-element" style="transition-delay: 200ms;">
-                    <div class="absolute inset-0 flex items-center justify-center -z-10">
-                        <div class="w-[350px] h-[350px] md:w-[450px] md:h-[450px] bg-gradient-to-tr from-mid-blue to-soft-blue opacity-40 animate-morph absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 blur-lg"></div>
-                        
-                        <div class="absolute w-[400px] h-[400px] border border-white/10 rounded-full animate-spin-slow"></div>
-                        <div class="absolute w-[300px] h-[300px] border-2 border-dashed border-white/5 rounded-full animate-spin-slow" style="animation-direction: reverse;"></div>
-                    </div>
 
-                    <img src="./img/new.png" 
-                         alt="Angga Qomaruzzaman" 
-                         class="relative z-20 max-h-[85%] md:max-h-[90%] w-auto object-contain object-bottom drop-shadow-2xl hover:scale-105 transition duration-500 mask-image-gradient">
-                    
-                    <div class="absolute top-1/3 left-0 md:-left-5 bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-2xl shadow-2xl z-30 animate-float">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-mid-blue rounded-lg flex items-center justify-center text-white text-xl">
-                                <i class="fa-brands fa-react"></i>
+                <!-- Photo with upload -->
+                <div class="md:w-1/2 flex justify-center items-center relative reveal-element"
+                    style="transition-delay:200ms">
+                    <div class="relative">
+                        <!-- Decorative rings -->
+                        <div class="absolute inset-0 flex items-center justify-center -z-10">
+                            <div
+                                class="w-[340px] h-[340px] bg-gradient-to-tr from-mid-blue to-soft-blue opacity-30 animate-morph absolute blur-2xl">
                             </div>
-                            <div>
-                                <p class="text-white/60 text-[10px] uppercase font-bold tracking-widest">Stack</p>
-                                <p class="text-white font-bold text-sm">MERN</p>
+                            <div
+                                class="absolute w-[380px] h-[380px] border border-white/10 rounded-full animate-spin-slow">
+                            </div>
+                            <div class="absolute w-[290px] h-[290px] border border-dashed border-white/5 rounded-full animate-spin-slow"
+                                style="animation-direction:reverse"></div>
+                        </div>
+
+                        <!-- Clickable photo -->
+                        <div class="photo-wrapper w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white/10 shadow-2xl"
+                            id="photo-wrapper" title="Klik untuk ganti foto">
+                            <img id="profile-photo" src="./img/new.png" alt="Angga Qomaruzzaman"
+                                class="w-full h-full object-cover object-top">
+                            <div class="photo-edit-overlay">
+                                <i class="fa-solid fa-camera text-2xl"></i>
+                                <span>Ganti Foto</span>
+                            </div>
+                        </div>
+
+                        <!-- Floating badge -->
+                        <div
+                            class="absolute -bottom-2 -left-4 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2.5 rounded-2xl shadow-2xl animate-float z-10">
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 bg-mid-blue rounded-lg flex items-center justify-center text-white">
+                                    <i class="fa-brands fa-react text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="text-white/50 text-[9px] uppercase font-bold tracking-widest">Stack</p>
+                                    <p class="text-white font-bold text-xs">MERN + FastAPI</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute -top-2 -right-4 bg-white/10 backdrop-blur-md border border-white/20 px-3 py-2 rounded-2xl shadow-2xl z-10"
+                            style="animation: float 6s ease-in-out infinite; animation-delay: 1s;">
+                            <div class="flex items-center gap-2">
+                                <div class="w-7 h-7 bg-green-500/20 rounded-lg flex items-center justify-center">
+                                    <i class="fa-solid fa-check text-green-400 text-xs"></i>
+                                </div>
+                                <p class="text-white text-xs font-semibold">Available</p>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
+    <!-- ══════════════════════════════════════════════════
+     SKILLS
+══════════════════════════════════════════════════ -->
     <section id="skills" class="py-24 bg-white relative">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 reveal-element">
-                <span class="text-mid-blue font-bold tracking-wider uppercase text-sm bg-pale-blue px-3 py-1 rounded-full">My Arsenal</span>
+            <div class="text-center mb-14 reveal-element">
+                <span
+                    class="text-mid-blue font-bold tracking-wider uppercase text-xs bg-pale-blue px-3 py-1 rounded-full">My
+                    Arsenal</span>
                 <h2 class="text-3xl md:text-4xl font-bold text-deep-blue mt-4">Technical Expertise</h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-500 reveal-element">
-                    <div class="w-14 h-14 bg-pale-blue text-mid-blue rounded-xl flex items-center justify-center text-2xl mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <div
+                    class="bg-white p-7 rounded-2xl border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-400 reveal-element">
+                    <div
+                        class="w-12 h-12 bg-pale-blue text-mid-blue rounded-xl flex items-center justify-center text-xl mb-5">
                         <i class="fa-solid fa-server"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-deep-blue mb-3">IT Operations</h3>
-                    <p class="text-sm text-slate-600 mb-6 leading-relaxed">
-                        Ensuring optimal system functionality through expert hardware troubleshooting and network management.
+                    <h3 class="text-lg font-bold text-deep-blue mb-2">IT Operations</h3>
+                    <p class="text-sm text-slate-500 mb-5 leading-relaxed">
+                        Hardware troubleshooting, network management, and IT asset administration in manufacturing
+                        environments.
                     </p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-slate-50 text-slate-600 text-xs font-semibold rounded-lg border border-slate-100">Hardware</span>
-                        <span class="px-3 py-1 bg-slate-50 text-slate-600 text-xs font-semibold rounded-lg border border-slate-100">Network</span>
-                        <span class="px-3 py-1 bg-slate-50 text-slate-600 text-xs font-semibold rounded-lg border border-slate-100">Mikrotik</span>
+                        <span class="tag bg-slate-50 text-slate-600 border border-slate-100">Hardware</span>
+                        <span class="tag bg-slate-50 text-slate-600 border border-slate-100">Network</span>
+                        <span class="tag bg-slate-50 text-slate-600 border border-slate-100">Mikrotik</span>
                     </div>
                 </div>
-                <div class="bg-deep-blue p-8 rounded-2xl border border-deep-blue shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-500 transform scale-105 z-10 reveal-element" style="transition-delay: 100ms;">
-                    <div class="w-14 h-14 bg-white/10 text-white rounded-xl flex items-center justify-center text-2xl mb-6 backdrop-blur-sm">
+
+                <div class="bg-deep-blue p-7 rounded-2xl border border-deep-blue shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-400 scale-105 z-10 reveal-element"
+                    style="transition-delay:100ms">
+                    <div
+                        class="w-12 h-12 bg-white/10 text-white rounded-xl flex items-center justify-center text-xl mb-5">
                         <i class="fa-brands fa-react"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Fullstack Dev</h3>
-                    <p class="text-sm text-white/70 mb-6 leading-relaxed">
-                        Building modern, responsive web applications using the JavaScript ecosystem (MERN Stack).
+                    <h3 class="text-lg font-bold text-white mb-2">Fullstack Dev</h3>
+                    <p class="text-sm text-white/60 mb-5 leading-relaxed">
+                        Building modern web apps with JavaScript + Python ecosystems — from UI to API to database.
                     </p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-white/10 text-white text-xs font-semibold rounded-lg">React.js</span>
-                        <span class="px-3 py-1 bg-white/10 text-white text-xs font-semibold rounded-lg">Node.js</span>
-                        <span class="px-3 py-1 bg-white/10 text-white text-xs font-semibold rounded-lg">MongoDB</span>
-                        <span class="px-3 py-1 bg-white/10 text-white text-xs font-semibold rounded-lg">Tailwind</span>
+                        <span class="tag bg-white/10 text-white">React.js</span>
+                        <span class="tag bg-white/10 text-white">FastAPI</span>
+                        <span class="tag bg-white/10 text-white">Node.js</span>
+                        <span class="tag bg-white/10 text-white">MongoDB</span>
+                        <span class="tag bg-white/10 text-white">Tailwind</span>
                     </div>
                 </div>
-                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-500 reveal-element" style="transition-delay: 200ms;">
-                    <div class="w-14 h-14 bg-pale-blue text-mid-blue rounded-xl flex items-center justify-center text-2xl mb-6">
+
+                <div class="bg-white p-7 rounded-2xl border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-400 reveal-element"
+                    style="transition-delay:200ms">
+                    <div
+                        class="w-12 h-12 bg-pale-blue text-mid-blue rounded-xl flex items-center justify-center text-xl mb-5">
                         <i class="fa-solid fa-database"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-deep-blue mb-3">Data & Admin</h3>
-                    <p class="text-sm text-slate-600 mb-6 leading-relaxed">
-                        Efficient SQL database management and organized administrative support with precise documentation.
+                    <h3 class="text-lg font-bold text-deep-blue mb-2">AI & Automation</h3>
+                    <p class="text-sm text-slate-500 mb-5 leading-relaxed">
+                        Integrating AI/ML tools (PyTorch, OCR, Gemini) and automating workflows with Google Apps Script.
                     </p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-slate-50 text-slate-600 text-xs font-semibold rounded-lg border border-slate-100">MySQL</span>
-                        <span class="px-3 py-1 bg-slate-50 text-slate-600 text-xs font-semibold rounded-lg border border-slate-100">Ms. Office</span>
-                        <span class="px-3 py-1 bg-slate-50 text-slate-600 text-xs font-semibold rounded-lg border border-slate-100">Reporting</span>
+                        <span class="tag bg-slate-50 text-slate-600 border border-slate-100">PyTorch</span>
+                        <span class="tag bg-slate-50 text-slate-600 border border-slate-100">Gemini AI</span>
+                        <span class="tag bg-slate-50 text-slate-600 border border-slate-100">GAS</span>
+                        <span class="tag bg-slate-50 text-slate-600 border border-slate-100">EasyOCR</span>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <section id="projects" class="py-24 bg-pale-blue relative">
+    <!-- ══════════════════════════════════════════════════
+     PROJECTS
+══════════════════════════════════════════════════ -->
+    <section id="projects" class="py-24 bg-slate-50 relative">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 reveal-element">
-                <span class="text-mid-blue font-bold tracking-wider uppercase text-sm bg-white px-3 py-1 rounded-full shadow-sm">Portfolio</span>
+            <div class="text-center mb-14 reveal-element">
+                <span
+                    class="text-mid-blue font-bold tracking-wider uppercase text-xs bg-white px-3 py-1 rounded-full shadow-sm border border-slate-100">Portfolio</span>
                 <h2 class="text-3xl md:text-4xl font-bold text-deep-blue mt-4">Featured Projects</h2>
+                <p class="text-slate-500 mt-3 max-w-xl mx-auto text-sm">Real-world applications built from scratch —
+                    enterprise tools, AI-powered scanners, and open-source utilities.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-500 group reveal-element">
-                    <div class="h-48 bg-deep-blue relative overflow-hidden group">
-                        <div class="absolute inset-0 bg-gradient-to-t from-deep-blue to-transparent opacity-80"></div>
-                        <i class="fa-solid fa-film absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-6xl text-white/20 group-hover:scale-110 transition duration-500"></i>
-                        <span class="absolute bottom-4 left-4 bg-mid-blue text-white text-xs font-bold px-3 py-1 rounded-full">Web App</span>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-deep-blue mb-2">Streaming Film Platform</h3>
-                        <p class="text-slate-600 text-sm mb-4 line-clamp-3">
-                            A responsive web application for streaming movies. Built with reusable components for easy maintenance and high performance.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="px-2 py-1 bg-pale-blue text-mid-blue text-xs font-semibold rounded">React.js</span>
-                            <span class="px-2 py-1 bg-pale-blue text-mid-blue text-xs font-semibold rounded">Tailwind CSS</span>
-                            <span class="px-2 py-1 bg-pale-blue text-mid-blue text-xs font-semibold rounded">Firebase</span>
+
+            <!-- ── Flux HRIS — Featured ───────────────────── -->
+            <div
+                class="project-card bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100 mb-6 reveal-element">
+                <div class="flex flex-col lg:flex-row">
+                    <div
+                        class="lg:w-2/5 bg-gradient-to-br from-deep-blue via-[#1a3a6b] to-mid-blue p-10 flex flex-col justify-between min-h-[260px] relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-48 h-48 bg-soft-blue/10 rounded-full blur-3xl"></div>
+                        <div>
+                            <span
+                                class="inline-flex items-center gap-1.5 bg-white/10 text-white text-xs font-bold px-3 py-1 rounded-full mb-4">
+                                <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>
+                                Enterprise App
+                            </span>
+                            <h3 class="text-2xl font-bold text-white mb-2">Flux HRIS</h3>
+                            <p class="text-white/60 text-sm leading-relaxed">
+                                Enterprise HR logistics platform — exit permits, vehicle booking, multi-level approvals,
+                                and QR-based security checkpoints.
+                            </p>
                         </div>
-                        <div class="flex gap-4">
-                            <a href="https://advance-react-three.vercel.app/" class="flex-1 text-center py-2 border border-mid-blue text-mid-blue font-bold rounded-lg hover:bg-mid-blue hover:text-white transition text-sm">
-                                <i class="fa-brands fa-github mr-2"></i> Code
+                        <div class="flex items-center gap-4 mt-6">
+                            <div class="text-center">
+                                <p class="text-2xl font-bold text-white">3</p>
+                                <p class="text-white/50 text-xs">Approval Levels</p>
+                            </div>
+                            <div class="w-px h-10 bg-white/10"></div>
+                            <div class="text-center">
+                                <p class="text-2xl font-bold text-white">QR</p>
+                                <p class="text-white/50 text-xs">Gate Scan</p>
+                            </div>
+                            <div class="w-px h-10 bg-white/10"></div>
+                            <div class="text-center">
+                                <p class="text-2xl font-bold text-white">5+</p>
+                                <p class="text-white/50 text-xs">Role Types</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-3/5 p-8 flex flex-col justify-between">
+                        <div>
+                            <div class="flex flex-wrap gap-2 mb-5">
+                                <span class="tag bg-blue-50 text-blue-700">React.js</span>
+                                <span class="tag bg-purple-50 text-purple-700">FastAPI</span>
+                                <span class="tag bg-green-50 text-green-700">MongoDB</span>
+                                <span class="tag bg-orange-50 text-orange-700">Python</span>
+                                <span class="tag bg-sky-50 text-sky-700">Tailwind CSS</span>
+                                <span class="tag bg-yellow-50 text-yellow-700">JWT Auth</span>
+                            </div>
+                            <p class="text-slate-500 text-sm leading-relaxed mb-4">
+                                Built for Indonesian enterprises — manages employee exit permits with digital approval
+                                chains, company vehicle booking, real-time notifications via WebSocket, and a QR code
+                                scanner for security checkpoints. Full admin dashboard with analytics, user management,
+                                and vehicle fleet tracking.
+                            </p>
+                            <div class="flex gap-3 flex-wrap text-xs text-slate-400">
+                                <span class="flex items-center gap-1"><i class="fa-solid fa-check text-green-500"></i>
+                                    WebSocket real-time</span>
+                                <span class="flex items-center gap-1"><i class="fa-solid fa-check text-green-500"></i>
+                                    PDF report export</span>
+                                <span class="flex items-center gap-1"><i class="fa-solid fa-check text-green-500"></i>
+                                    EasyOCR integration</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-3 mt-6 flex-wrap">
+                            <a href="https://github.com/ZiQax/new-hrga-app" target="_blank"
+                                class="flex items-center gap-2 px-4 py-2 bg-deep-blue text-white text-sm font-semibold rounded-lg hover:bg-mid-blue transition">
+                                <i class="fa-brands fa-github"></i> View on GitHub
                             </a>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-500 group reveal-element" style="transition-delay: 100ms;">
-                    <div class="h-48 bg-slate-800 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-80"></div>
-                        <i class="fa-solid fa-server absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-6xl text-white/20 group-hover:scale-110 transition duration-500"></i>
-                        <span class="absolute bottom-4 left-4 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full">Backend API</span>
+            </div>
+
+            <!-- ── Bottom row: 3 cards ───────────────────── -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- FindJol -->
+                <div
+                    class="project-card bg-white rounded-2xl overflow-hidden shadow-md border border-slate-100 reveal-element">
+                    <div class="h-40 relative overflow-hidden bg-[#0a0f16]">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl"></div>
+                            <i class="fa-solid fa-shield-halved absolute text-5xl text-cyan-400/20"></i>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f16] via-transparent to-transparent">
+                        </div>
+                        <div
+                            class="absolute top-3 right-3 bg-cyan-500/20 border border-cyan-400/30 text-cyan-300 text-[10px] font-bold px-2.5 py-1 rounded-full">
+                            Open Source
+                        </div>
+                        <div class="absolute bottom-3 left-4">
+                            <i class="fa-brands fa-github text-white/30 mr-2"></i>
+                            <span class="text-white/50 text-xs font-mono">anggaqomaruzzaman091-rgb</span>
+                        </div>
                     </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-deep-blue mb-2">RESTful API Service</h3>
-                        <p class="text-slate-600 text-sm mb-4 line-clamp-3">
-                            Backend service for user data management and authentication. Implements CRUD operations with JWT security.
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-deep-blue mb-1">FindJol</h3>
+                        <p class="text-slate-500 text-xs mb-4 leading-relaxed">
+                            Cybersecurity tool that scans KTP using offline PyTorch OCR to detect identity theft from
+                            illegal online loans. Auto-generates formal OJK dispute letters.
                         </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="px-2 py-1 bg-pale-blue text-mid-blue text-xs font-semibold rounded">Node.js</span>
-                            <span class="px-2 py-1 bg-pale-blue text-mid-blue text-xs font-semibold rounded">Express</span>
-                            <span class="px-2 py-1 bg-pale-blue text-mid-blue text-xs font-semibold rounded">MongoDB</span>
+                        <div class="flex flex-wrap gap-1.5 mb-5">
+                            <span class="tag bg-cyan-50 text-cyan-700">React + Vite</span>
+                            <span class="tag bg-purple-50 text-purple-700">FastAPI</span>
+                            <span class="tag bg-orange-50 text-orange-700">PyTorch OCR</span>
+                            <span class="tag bg-green-50 text-green-700">MongoDB</span>
                         </div>
-                        <div class="flex gap-4">
-                            <a href="#" class="w-full text-center py-2 border border-mid-blue text-mid-blue font-bold rounded-lg hover:bg-mid-blue hover:text-white transition text-sm">
-                                <i class="fa-brands fa-github mr-2"></i> Repository
-                            </a>
-                        </div>
+                        <a href="https://github.com/anggaqomaruzzaman091-rgb/finjol" target="_blank"
+                            class="flex items-center justify-center gap-2 w-full py-2 border border-deep-blue text-deep-blue text-xs font-bold rounded-lg hover:bg-deep-blue hover:text-white transition">
+                            <i class="fa-brands fa-github"></i> Repository
+                        </a>
                     </div>
                 </div>
+
+                <!-- Inventory System -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-md border border-slate-100 reveal-element"
+                    style="transition-delay:100ms">
+                    <div class="h-40 relative overflow-hidden bg-gradient-to-br from-emerald-900 to-green-800">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fa-solid fa-boxes-stacked absolute text-5xl text-white/10"></i>
+                            <div class="w-32 h-32 bg-emerald-400/20 rounded-full blur-2xl"></div>
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-emerald-900/80 via-transparent to-transparent">
+                        </div>
+                        <div
+                            class="absolute top-3 right-3 bg-emerald-400/20 border border-emerald-400/30 text-emerald-200 text-[10px] font-bold px-2.5 py-1 rounded-full">
+                            Live Demo
+                        </div>
+                        <div class="absolute bottom-3 left-4">
+                            <i class="fa-brands fa-google text-white/30 mr-1.5 text-xs"></i>
+                            <span class="text-white/50 text-xs font-mono">Google Apps Script</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-deep-blue mb-1">Smart Inventory System</h3>
+                        <p class="text-slate-500 text-xs mb-4 leading-relaxed">
+                            Web-based inventory management on the Google ecosystem. Built with Gemini AI for intelligent
+                            stock predictions and automated reporting via Google Sheets.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 mb-5">
+                            <span class="tag bg-emerald-50 text-emerald-700">Google Apps Script</span>
+                            <span class="tag bg-blue-50 text-blue-700">Spreadsheet</span>
+                            <span class="tag bg-sky-50 text-sky-700">Tailwind CSS</span>
+                            <span class="tag bg-purple-50 text-purple-700">Gemini AI</span>
+                        </div>
+                        <a href="https://script.google.com/macros/s/AKfycby5ugei7nYNg28umwXEKBMFwNtCnxe6nOcuzDf_0Zv0/dev?page=Home"
+                            target="_blank"
+                            class="flex items-center justify-center gap-2 w-full py-2 bg-emerald-600 text-white text-xs font-bold rounded-lg hover:bg-emerald-700 transition">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Streaming Film -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-md border border-slate-100 reveal-element"
+                    style="transition-delay:200ms">
+                    <div class="h-40 relative overflow-hidden bg-gradient-to-br from-slate-800 to-slate-900">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fa-solid fa-film absolute text-5xl text-white/10"></i>
+                            <div class="w-32 h-32 bg-red-500/10 rounded-full blur-2xl"></div>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
+                        </div>
+                        <div
+                            class="absolute top-3 right-3 bg-red-500/20 border border-red-400/30 text-red-300 text-[10px] font-bold px-2.5 py-1 rounded-full">
+                            Web App
+                        </div>
+                        <div class="absolute bottom-3 left-4">
+                            <i class="fa-brands fa-vercel text-white/30 mr-1.5 text-xs"></i>
+                            <span class="text-white/50 text-xs font-mono">Deployed on Vercel</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-deep-blue mb-1">Streaming Film Platform</h3>
+                        <p class="text-slate-500 text-xs mb-4 leading-relaxed">
+                            Responsive movie streaming web app with reusable component architecture, Firebase backend,
+                            and optimized performance.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 mb-5">
+                            <span class="tag bg-blue-50 text-blue-700">React.js</span>
+                            <span class="tag bg-sky-50 text-sky-700">Tailwind CSS</span>
+                            <span class="tag bg-orange-50 text-orange-700">Firebase</span>
+                        </div>
+                        <a href="https://advance-react-three.vercel.app/" target="_blank"
+                            class="flex items-center justify-center gap-2 w-full py-2 border border-deep-blue text-deep-blue text-xs font-bold rounded-lg hover:bg-deep-blue hover:text-white transition">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                        </a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <section id="experience" class="py-20 bg-white relative border-b border-slate-100">
+    <!-- ══════════════════════════════════════════════════
+     EXPERIENCE
+══════════════════════════════════════════════════ -->
+    <section id="experience" class="py-20 bg-white border-b border-slate-100">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center gap-4 mb-12 reveal-element">
-                <div class="w-12 h-12 rounded-full bg-pale-blue flex items-center justify-center text-mid-blue text-xl">
+                <div class="w-11 h-11 rounded-full bg-pale-blue flex items-center justify-center text-mid-blue">
                     <i class="fa-solid fa-briefcase"></i>
                 </div>
                 <div>
-                    <h2 class="text-2xl font-bold text-deep-blue">Professional Experience</h2>
-                    <p class="text-slate-500 text-sm">My professional career journey</p>
+                    <h2 class="text-2xl font-bold text-deep-blue">Pengalaman Profesional</h2>
+                    <p class="text-slate-400 text-sm">Perjalanan karier profesional</p>
                 </div>
             </div>
-
-            <div class="relative border-l-2 border-slate-200 ml-6 md:ml-6 space-y-12">
-                <div class="relative pl-12 md:pl-16 group reveal-element">
-                    <div class="absolute -left-6 top-0 w-12 h-12 bg-white border border-slate-200 rounded-full flex items-center justify-center group-hover:scale-110 transition z-10 p-2">
+            <div class="relative border-l-2 border-slate-100 ml-5 space-y-10">
+                <div class="relative pl-12 group reveal-element">
+                    <div
+                        class="absolute -left-5 top-0 w-10 h-10 bg-white border-2 border-slate-100 rounded-full flex items-center justify-center group-hover:border-mid-blue transition z-10 p-1.5">
                         <img src="./img/kyoraku-baru.png" alt="Kyoraku" class="w-full h-full object-contain">
                     </div>
-                    
                     <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition border border-slate-100">
                         <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
-                            <h3 class="text-xl font-bold text-deep-blue">IT Helpdesk & HRGA Admin</h3>
-                            <span class="text-xs font-bold text-mid-blue bg-pale-blue px-3 py-1 rounded-full mt-2 sm:mt-0 w-fit">Apr 2024 - Present</span>
+                            <h3 class="text-lg font-bold text-deep-blue">IT Helpdesk &amp; HRGA Admin</h3>
+                            <span
+                                class="text-xs font-bold text-mid-blue bg-pale-blue px-3 py-1 rounded-full mt-2 sm:mt-0 w-fit">Apr
+                                2024 – Present</span>
                         </div>
-                        <p class="text-slate-600 font-medium mb-3">PT. Kyoraku Blowmolding Indonesia</p>
-                        <ul class="list-disc list-outside ml-4 text-sm text-slate-500 space-y-2">
-                            <li>Provide technical assistance and troubleshooting hardware/software/network in manufacturing environment.</li>
-                            <li>Monitor IT infrastructure and manage IT assets efficiently.</li>
-                            <li>Support HRGA administration tasks and documentation.</li>
+                        <p class="text-slate-500 font-medium text-sm mb-3">PT. Kyoraku Blowmolding Indonesia</p>
+                        <ul class="list-disc list-outside ml-4 text-sm text-slate-400 space-y-1.5">
+                            <li>Hardware, software, and network troubleshooting in a manufacturing environment.</li>
+                            <li>IT infrastructure monitoring and asset management.</li>
+                            <li>HRGA administration, documentation, and internal tooling (Smart Inventory System).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="relative border-l-2 border-slate-100 ml-5 space-y-10 mt-4">
+                <div class="relative pl-12 group reveal-element">
+                    <div
+                        class="absolute -left-5 top-0 w-10 h-10 bg-white border-2 border-slate-100 rounded-full flex items-center justify-center group-hover:border-mid-blue transition z-10 p-1.5">
+                        <img src="./img/download.svg" alt="HariSenin" class="w-full h-full object-contain">
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition border border-slate-100">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
+                            <h3 class="text-lg font-bold text-deep-blue">Fullstack Web Developer (Freelance)</h3>
+                            <span
+                                class="text-xs font-bold text-mid-blue bg-pale-blue px-3 py-1 rounded-full mt-2 sm:mt-0 w-fit">December
+                                2024 - March 2025</span>
+                        </div>
+                        <p class="text-slate-500 font-medium text-sm mb-3">Harisenin.com</p>
+                        <ul class="list-disc list-outside ml-4 text-sm text-slate-400 space-y-1.5">
+                            <li>Developed responsive frontend utilizing Javascipt libraries and Tailwind CSS to enhance
+                                user experience.</li>
+                            <li>Architected robust backend logic using Node.js, and using MongoDB for data management.
+                            </li>
+                            <li>Successfully integrate the frontend and backend into a full-stack application.</li>
                         </ul>
                     </div>
                 </div>
@@ -325,145 +670,310 @@
         </div>
     </section>
 
-    <section id="education" class="py-20 bg-slate-50 relative border-b border-slate-100">
+    <!-- ══════════════════════════════════════════════════
+     EDUCATION
+══════════════════════════════════════════════════ -->
+    <section id="education" class="py-20 bg-slate-50 border-b border-slate-100">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center gap-4 mb-12 reveal-element">
-                <div class="w-12 h-12 rounded-full bg-white border border-slate-200 flex items-center justify-center text-mid-blue text-xl">
+                <div
+                    class="w-11 h-11 rounded-full bg-white border border-slate-200 flex items-center justify-center text-mid-blue">
                     <i class="fa-solid fa-graduation-cap"></i>
                 </div>
                 <div>
-                    <h2 class="text-2xl font-bold text-deep-blue">Education History</h2>
-                    <p class="text-slate-500 text-sm">Academic degrees and bootcamps</p>
+                    <h2 class="text-2xl font-bold text-deep-blue">Riwayat Pendidikan</h2>
+                    <p class="text-slate-400 text-sm">Gelar akademik dan bootcamp</p>
                 </div>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-mid-blue/30 transition reveal-element">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div
+                    class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-mid-blue/30 transition reveal-element">
                     <div class="flex items-start justify-between mb-4">
-                        <div class="w-12 h-12 bg-slate-50 rounded-lg p-2 flex items-center justify-center">
-                            <img src="./img/Logo-Universitas-Pelita-Bangsa-UPB-Format-PNG-CDR-EPS-SVG-PDF-AI-300x228.png" alt="UPB" class="w-full h-full object-contain">
+                        <div
+                            class="w-11 h-11 bg-slate-50 rounded-lg p-1.5 flex items-center justify-center border border-slate-100">
+                            <img src="./img/Logo-Universitas-Pelita-Bangsa-UPB-Format-PNG-CDR-EPS-SVG-PDF-AI-300x228.png"
+                                alt="UPB" class="w-full h-full object-contain">
                         </div>
-                        <span class="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded">On Progress</span>
+                        <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">On Progress</span>
                     </div>
-                    <h3 class="text-lg font-bold text-deep-blue">Informatics Engineering (S1)</h3>
-                    <p class="text-slate-600 text-sm mb-2">Universitas Pelita Bangsa</p>
-                    <p class="text-xs text-slate-400 font-mono">
-                        <i class="fa-solid fa-id-card mr-1"></i> NIM: 31231234567
-                    </p>
+                    <h3 class="text-base font-bold text-deep-blue">Teknik Informatika (S1)</h3>
+                    <p class="text-slate-500 text-sm mb-1">Universitas Pelita Bangsa</p>
+                    <p class="text-xs text-slate-400 font-mono"><i class="fa-solid fa-id-card mr-1"></i> NIM:
+                        31231234567</p>
                 </div>
-
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-mid-blue/30 transition reveal-element" style="transition-delay: 100ms;">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-mid-blue/30 transition reveal-element"
+                    style="transition-delay:100ms">
                     <div class="flex items-start justify-between mb-4">
-                        <div class="w-12 h-12 bg-slate-50 rounded-lg p-2 flex items-center justify-center">
+                        <div
+                            class="w-11 h-11 bg-slate-50 rounded-lg p-1.5 flex items-center justify-center border border-slate-100">
                             <img src="./img/download.svg" alt="Harisenin" class="w-full h-full object-contain">
                         </div>
-                        <span class="text-xs font-bold text-slate-500 bg-slate-100 px-2 py-1 rounded">Completed</span>
+                        <span class="text-xs font-bold text-slate-500 bg-slate-100 px-2 py-1 rounded">Selesai</span>
                     </div>
-                    <h3 class="text-lg font-bold text-deep-blue">Fullstack Web Developer</h3>
-                    <p class="text-slate-600 text-sm mb-2">Harisenin.com Bootcamp</p>
-                    <p class="text-xs text-slate-500">
-                        Intensive bootcamp mastering MERN Stack, Data Structures, and Redux State Management.
-                    </p>
+                    <h3 class="text-base font-bold text-deep-blue">Fullstack Web Developer</h3>
+                    <p class="text-slate-500 text-sm mb-1">Harisenin.com Bootcamp</p>
+                    <p class="text-xs text-slate-500">Intensive bootcamp — MERN Stack, Data Structures, Redux.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="certification" class="py-20 bg-white relative">
+    <!-- ══════════════════════════════════════════════════
+     CERTIFICATION
+══════════════════════════════════════════════════ -->
+    <section id="certification" class="py-20 bg-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center gap-4 mb-12 reveal-element">
-                <div class="w-12 h-12 rounded-full bg-pale-blue flex items-center justify-center text-mid-blue text-xl">
+                <div class="w-11 h-11 rounded-full bg-pale-blue flex items-center justify-center text-mid-blue">
                     <i class="fa-solid fa-certificate"></i>
                 </div>
                 <div>
-                    <h2 class="text-2xl font-bold text-deep-blue">Certifications</h2>
-                    <p class="text-slate-500 text-sm">Professional validations</p>
+                    <h2 class="text-2xl font-bold text-deep-blue">Sertifikasi</h2>
+                    <p class="text-slate-400 text-sm">Validasi kompetensi profesional</p>
                 </div>
             </div>
-
-            <div class="bg-gradient-to-r from-deep-blue to-mid-blue p-1 rounded-2xl reveal-element">
-                <div class="bg-white p-6 rounded-xl h-full flex flex-col sm:flex-row items-center gap-6">
-                    <div class="w-20 h-20 flex-shrink-0 bg-slate-50 rounded-full p-3 flex items-center justify-center border border-slate-100">
+            <div class="bg-gray p-0.5 rounded-2xl reveal-element">
+                <div class="bg-white p-6 rounded-[14px] flex flex-col sm:flex-row items-center gap-6">
+                    <div
+                        class="w-16 h-16 flex-shrink-0 bg-slate-50 rounded-full p-2 flex items-center justify-center border border-slate-100">
                         <img src="./img/LOGO_LSP_DITEKINDO_2023.png" alt="BNSP" class="w-full h-full object-contain">
                     </div>
                     <div class="flex-grow text-center sm:text-left">
-                        <h3 class="text-xl font-bold text-deep-blue">Web Developer Certification (BNSP)</h3>
-                        <p class="text-slate-600 font-medium text-sm mb-2">Issued by LSP Ditekindo & Syntax Training Center</p>
-                        <p class="text-sm text-slate-500 leading-relaxed">
-                            Competency certification for Web Development using Laravel Framework. Validated skills in creating CRUD applications, API integration, and Database Management.
+                        <h3 class="text-lg font-bold text-deep-blue">Web Developer (BNSP)</h3>
+                        <p class="text-slate-500 font-medium text-sm mb-1.5">Issued by LSP Ditekindo</p>
+                        <p class="text-sm text-slate-400 leading-relaxed">
+                            Competency certification for Web Development using Laravel. CRUD, API integration, database
+                            management.
                         </p>
                     </div>
-                    <div class="flex-shrink-0">
-                        <span class="block text-center text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Date Issued</span>
-                        <span class="block text-center font-bold text-deep-blue bg-pale-blue px-4 py-2 rounded-lg">Dec 2025</span>
+                    <div class="flex-shrink-0 text-center">
+                        <span
+                            class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Issued</span>
+                        <span class="block font-bold text-deep-blue bg-pale-blue px-4 py-2 rounded-lg text-sm">Dec
+                            2025</span>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-[14px] flex flex-col sm:flex-row items-center gap-6">
+                    <div
+                        class="w-16 h-16 flex-shrink-0 bg-slate-50 rounded-full p-2 flex items-center justify-center border border-slate-100">
+                        <img src="./img/Logo-Syntaxnesia-Primary-Logo-scaled.png" alt="Syntaxnesia"
+                            class="w-full h-full object-contain">
+                    </div>
+                    <div class="flex-grow text-center sm:text-left">
+                        <h3 class="text-lg font-bold text-deep-blue">Web Developer</h3>
+                        <p class="text-slate-500 font-medium text-sm mb-1.5">Issued by Syntaxnesia</p>
+                        <p class="text-sm text-slate-400 leading-relaxed">
+                            Determining Hardware Architecture and Design, Debugging, SQL, Programming Algorithm and
+                            Logic.
+                        </p>
+                    </div>
+                    <div class="flex-shrink-0 text-center">
+                        <span
+                            class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Issued</span>
+                        <span class="block font-bold text-deep-blue bg-pale-blue px-4 py-2 rounded-lg text-sm">Dec
+                            2025</span>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-[14px] flex flex-col sm:flex-row items-center gap-6">
+                    <div
+                        class="w-16 h-16 flex-shrink-0 bg-slate-50 rounded-full p-2 flex items-center justify-center border border-slate-100">
+                        <img src="./img/download.svg" alt="Syntaxnesia" class="w-full h-full object-contain">
+                    </div>
+                    <div class="flex-grow text-center sm:text-left">
+                        <h3 class="text-lg font-bold text-deep-blue">Full-stack JavaScript Web Developer</h3>
+                        <p class="text-slate-500 font-medium text-sm mb-1.5">Issued Harisenin.com</p>
+                        <p class="text-sm text-slate-400 leading-relaxed">
+                            Basic Full-stack Developer, Version Control Git & GitHub, HTML & CSS, Javascript, Javascript
+                            Library (React & Vue),
+                            CRUD, API Implementaion, State Management.
+                        </p>
+                    </div>
+                    <div class="flex-shrink-0 text-center">
+                        <span
+                            class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Issued</span>
+                        <span class="block font-bold text-deep-blue bg-pale-blue px-4 py-2 rounded-lg text-sm">June
+                            2025</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ══════════════════════════════════════════════════
+     CONTACT / FOOTER
+══════════════════════════════════════════════════ -->
     <footer id="contact" class="bg-deep-blue text-white py-20 border-t border-white/10 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-deep-blue via-soft-blue to-deep-blue"></div>
-        
+        <div
+            class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-soft-blue to-transparent opacity-50">
+        </div>
         <div class="max-w-4xl mx-auto px-4 text-center reveal-element">
-            <h2 class="text-3xl font-bold mb-8">Ready to Collaborate?</h2>
-            <p class="text-pale-blue/60 mb-12 max-w-xl mx-auto">
-                I am open to discussing Web Development projects or professional IT Support opportunities.
+            <span
+                class="text-soft-blue text-xs font-bold tracking-[0.2em] uppercase bg-white/5 px-4 py-1.5 rounded-full border border-white/10">
+                Let's Work Together
+            </span>
+            <h2 class="text-3xl font-bold mt-5 mb-4">Ready to Collaborate?</h2>
+            <p class="text-pale-blue/50 mb-10 max-w-md mx-auto text-sm leading-relaxed">
+                Open for Web Development projects and IT Support opportunities. Let's build something great.
             </p>
-
-            <div class="flex flex-wrap justify-center gap-6 mb-12">
-                <a href="https://wa.me/628897362933" class="group flex items-center justify-center gap-3 px-6 py-4 bg-white/5 rounded-xl hover:bg-white/10 transition border border-white/10 w-full md:w-auto">
-                    <i class="fa-brands fa-whatsapp text-2xl text-green-400 group-hover:scale-110 transition"></i>
+            <div class="flex flex-wrap justify-center gap-4 mb-10">
+                <a href="https://wa.me/628897362933"
+                    class="group flex items-center gap-3 px-5 py-3.5 bg-white/5 rounded-xl hover:bg-white/10 transition border border-white/10 w-full md:w-auto">
+                    <i class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition"></i>
                     <div class="text-left">
-                        <p class="text-[10px] text-white/50 uppercase tracking-widest">WhatsApp</p>
+                        <p class="text-[9px] text-white/40 uppercase tracking-widest">WhatsApp</p>
                         <p class="font-bold text-sm">0889-7362-933</p>
                     </div>
                 </a>
-                <a href="mailto:anggagomaruzzaman789@gmail.com" class="group flex items-center justify-center gap-3 px-6 py-4 bg-white/5 rounded-xl hover:bg-white/10 transition border border-white/10 w-full md:w-auto">
-                    <i class="fa-regular fa-envelope text-2xl text-soft-blue group-hover:scale-110 transition"></i>
+                <a href="mailto:anggaqomaruzzaman65@gmail.com"
+                    class="group flex items-center gap-3 px-5 py-3.5 bg-white/5 rounded-xl hover:bg-white/10 transition border border-white/10 w-full md:w-auto">
+                    <i class="fa-regular fa-envelope text-xl text-soft-blue group-hover:scale-110 transition"></i>
                     <div class="text-left">
-                        <p class="text-[10px] text-white/50 uppercase tracking-widest">Email</p>
-                        <p class="font-bold text-sm">anggagomaruzzaman789...</p>
+                        <p class="text-[9px] text-white/40 uppercase tracking-widest">Email</p>
+                        <p class="font-bold text-sm">anggaqomaruzzaman65@gmail.com</p>
                     </div>
                 </a>
-                <a href="https://linkedin.com/in/angga-qomaruzzaman" class="group flex items-center justify-center gap-3 px-6 py-4 bg-white/5 rounded-xl hover:bg-white/10 transition border border-white/10 w-full md:w-auto">
-                    <i class="fa-brands fa-linkedin text-2xl text-blue-500 group-hover:scale-110 transition"></i>
+                <a href="https://linkedin.com/in/angga-qomaruzzaman" target="_blank"
+                    class="group flex items-center gap-3 px-5 py-3.5 bg-white/5 rounded-xl hover:bg-white/10 transition border border-white/10 w-full md:w-auto">
+                    <i class="fa-brands fa-linkedin text-xl text-blue-400 group-hover:scale-110 transition"></i>
                     <div class="text-left">
-                        <p class="text-[10px] text-white/50 uppercase tracking-widest">LinkedIn</p>
+                        <p class="text-[9px] text-white/40 uppercase tracking-widest">LinkedIn</p>
                         <p class="font-bold text-sm">Angga Qomaruzzaman</p>
                     </div>
                 </a>
             </div>
-            <p class="text-white/30 text-xs tracking-wider">&copy; 2026 Angga Qomaruzzaman. All Rights Reserved.</p>
+            <p class="text-white/20 text-xs tracking-wider">&copy; 2026 Angga Qomaruzzaman. All Rights Reserved.</p>
         </div>
     </footer>
 
+    <!-- ══════════════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════════════ -->
     <script>
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15 
-        };
+        const PHOTO_KEY = 'portfolio_photo_v1';
+        const CV_KEY = 'portfolio_cv_v1';
+        const CV_NAME_KEY = 'portfolio_cv_name_v1';
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
+        // ── Toast helper ───────────────────────────────────────────
+        function showToast(msg, isError = false) {
+            const toast = document.getElementById('upload-toast');
+            const msgEl = document.getElementById('toast-msg');
+            msgEl.textContent = msg;
+            const icon = toast.querySelector('i');
+            icon.className = isError
+                ? 'fa-solid fa-circle-exclamation mr-2 text-red-400'
+                : 'fa-solid fa-circle-check mr-2 text-green-400';
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // ── Photo upload ───────────────────────────────────────────
+        function initPhoto() {
+            const img = document.getElementById('profile-photo');
+            const input = document.getElementById('photo-input');
+            const wrapper = document.getElementById('photo-wrapper');
+
+            const saved = localStorage.getItem(PHOTO_KEY);
+            if (saved) img.src = saved;
+
+            wrapper.addEventListener('click', () => input.click());
+
+            input.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                if (!file.type.startsWith('image/')) { showToast('File harus berupa gambar.', true); return; }
+                if (file.size > 4 * 1024 * 1024) { showToast('Ukuran gambar max 4MB.', true); return; }
+
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    localStorage.setItem(PHOTO_KEY, ev.target.result);
+                    img.src = ev.target.result;
+                    showToast('Foto berhasil diperbarui!');
+                };
+                reader.readAsDataURL(file);
+                input.value = '';
+            });
+        }
+
+        // ── CV upload / download ───────────────────────────────────
+        function initCV() {
+            const btn = document.getElementById('cv-btn');
+            const label = document.getElementById('cv-btn-label');
+            const input = document.getElementById('cv-input');
+
+            function applyCV(dataUrl, fileName) {
+                btn.setAttribute('href', dataUrl);
+                btn.setAttribute('download', fileName);
+                btn.setAttribute('data-ready', '1');
+                btn.classList.remove('cv-btn-no-file');
+                btn.classList.add('cv-btn-has-file');
+                label.textContent = 'Download CV';
+                const icon = btn.querySelector('i');
+                if (icon) icon.className = 'fa-solid fa-file-arrow-down';
+            }
+
+            const savedCV = localStorage.getItem(CV_KEY);
+            const savedName = localStorage.getItem(CV_NAME_KEY) || 'CV_Angga.pdf';
+            if (savedCV) applyCV(savedCV, savedName);
+
+            btn.addEventListener('click', (e) => {
+                if (btn.getAttribute('data-ready') === '1') {
+                    // Browser handles the download via href+download
+                    const a = document.createElement('a');
+                    a.href = btn.getAttribute('href');
+                    a.download = btn.getAttribute('download');
+                    a.click();
                 } else {
-                    entry.target.classList.remove('active');
+                    e.preventDefault();
+                    input.click();
                 }
             });
-        }, observerOptions);
 
-        document.querySelectorAll('.reveal-element').forEach((el) => {
-            observer.observe(el);
-        });
+            input.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                const allowed = ['application/pdf', 'application/msword',
+                    'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+                if (!allowed.includes(file.type)) { showToast('Upload CV dalam format PDF atau Word.', true); return; }
+                if (file.size > 5 * 1024 * 1024) { showToast('Ukuran CV max 5MB.', true); return; }
 
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    localStorage.setItem(CV_KEY, ev.target.result);
+                    localStorage.setItem(CV_NAME_KEY, file.name);
+                    applyCV(ev.target.result, file.name);
+                    showToast('CV berhasil diupload — klik tombol untuk download!');
+                };
+                reader.readAsDataURL(file);
+                input.value = '';
+            });
+        }
+
+        // ── Scroll reveal ──────────────────────────────────────────
+        function initReveal() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                    else entry.target.classList.remove('active');
+                });
+            }, { threshold: 0.12 });
+
+            document.querySelectorAll('.reveal-element').forEach(el => observer.observe(el));
+        }
+
+        // ── Mobile nav ─────────────────────────────────────────────
+        function initMobileNav() {
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+            menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.add('hidden')));
+        }
+
+        // ── Boot ──────────────────────────────────────────────────
+        initPhoto();
+        initCV();
+        initReveal();
+        initMobileNav();
     </script>
 </body>
+
 </html>
