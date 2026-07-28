@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+import os
+
+html_content = """<!DOCTYPE html>
 <html lang="id" class="scroll-smooth dark">
 <head>
     <meta charset="UTF-8">
@@ -846,4 +848,9 @@
         }
     </script>
 </body>
-</html>
+</html>"""
+
+with open(r"c:\Users\lenovo\Documents\Portofolio\index.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print("index.html successfully updated with bug fixes and timeline bullet logos.")
