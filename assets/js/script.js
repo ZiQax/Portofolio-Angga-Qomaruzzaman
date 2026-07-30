@@ -110,7 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (cvData && cvName) {
             cvText.innerText = "Download CV";
-            cvBtn.classList.add('border-accent-light', 'text-accent-light', 'dark:text-accent-dark');
+            cvBtn.classList.remove('text-neutral-700', 'dark:text-neutral-200', 'border-neutral-200', 'dark:border-neutral-800');
+            cvBtn.classList.add('border-accent-light', 'dark:border-accent-dark', 'text-accent-light', 'dark:text-accent-dark');
             if (cvChangeBtn) cvChangeBtn.classList.remove('hidden');
 
             cvBtn.onclick = function (e) {
