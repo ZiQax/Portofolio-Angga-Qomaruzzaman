@@ -5,6 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Angga Qomaruzzaman — Premium Fullstack Developer</title>
+    <meta name="description"
+        content="Portfolio of Angga Qomaruzzaman, Senior IT Specialist & Fullstack Developer specializing in web applications and AI integration.">
+    <meta property="og:title" content="Angga Qomaruzzaman — Premium Fullstack Developer">
+    <meta property="og:description"
+        content="Portfolio of Angga Qomaruzzaman, Senior IT Specialist & Fullstack Developer specializing in web applications and AI integration.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -67,158 +74,7 @@
         }
     </script>
 
-    <style>
-        body {
-            transition: background-color 0.5s cubic-bezier(0.25, 1, 0.5, 1), color 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-            overflow-x: hidden;
-        }
-
-        .clean-card {
-            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .clean-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
-        }
-
-        .dark .clean-card:hover {
-            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.6);
-        }
-
-        .nav-glass {
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-        }
-
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            border-radius: 3px;
-        }
-
-        .dark ::-webkit-scrollbar-track {
-            background: #0a0a0a;
-        }
-
-        .dark ::-webkit-scrollbar-thumb {
-            background: #262626;
-        }
-
-        .dark ::-webkit-scrollbar-thumb:hover {
-            background: #404040;
-        }
-
-        html:not(.dark) ::-webkit-scrollbar-track {
-            background: #fafafa;
-        }
-
-        html:not(.dark) ::-webkit-scrollbar-thumb {
-            background: #d4d4d4;
-        }
-
-        html:not(.dark) ::-webkit-scrollbar-thumb:hover {
-            background: #a3a3a3;
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        #project-modal {
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-            z-index: 9999;
-        }
-
-        #project-modal.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .modal-content {
-            transform: scale(0.97);
-            opacity: 0;
-            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        #project-modal.active .modal-content {
-            transform: scale(1);
-            opacity: 1;
-        }
-
-        .upload-overlay {
-            opacity: 0;
-            transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .group:hover .upload-overlay {
-            opacity: 1;
-        }
-
-        .social-btn {
-            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        /* Timeline image bullet node styles */
-        .timeline-logo-node {
-            position: absolute;
-            left: -40px;
-            /* matches the pl-10 padding */
-            top: 50%;
-            transform: translate(-50%, -50%);
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background-color: white;
-            border: 4px solid #e5e5e5;
-            /* neutral-200 */
-            z-index: 10;
-            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 4px;
-        }
-
-        .dark .timeline-logo-node {
-            background-color: #0a0a0a;
-            border-color: #262626;
-            /* neutral-800 */
-        }
-
-        .timeline-wrapper:hover .timeline-logo-node {
-            border-color: #4f46e5;
-            box-shadow: 0 0 15px rgba(79, 70, 229, 0.3);
-            transform: translate(-50%, -50%) scale(1.1);
-        }
-
-        .dark .timeline-wrapper:hover .timeline-logo-node {
-            border-color: #818cf8;
-            box-shadow: 0 0 15px rgba(129, 140, 248, 0.3);
-        }
-
-        .timeline-logo-node img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-    </style>
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body
@@ -246,7 +102,7 @@
                         Let's Talk
                     </a>
 
-                    <button id="theme-toggle"
+                    <button id="theme-toggle" aria-label="Toggle Dark Mode"
                         class="w-10 h-10 rounded-full flex items-center justify-center bg-neutral-200 text-neutral-600 hover:bg-neutral-300 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:bg-neutral-700 transition-colors duration-300">
                         <i class="fa-solid fa-moon dark:hidden"></i>
                         <i class="fa-solid fa-sun hidden dark:block"></i>
@@ -265,6 +121,7 @@
     <input type="file" id="project-thumb-input-1" accept="image/*" class="hidden">
     <input type="file" id="project-thumb-input-2" accept="image/*" class="hidden">
     <input type="file" id="project-thumb-input-3" accept="image/*" class="hidden">
+    <input type="file" id="modal-hero-input" accept="image/*" class="hidden">
 
     <section id="home"
         class="min-h-screen flex items-center pt-20 relative bg-gradient-to-b from-blue-50/70 to-neutral-50 dark:from-blue-900/10 dark:to-neutral-950">
@@ -311,15 +168,15 @@
                     </div>
 
                     <div class="mt-12 flex items-center gap-6 justify-center lg:justify-start">
-                        <a href="https://linkedin.com/in/angga-qomaruzzaman" target="_blank"
+                        <a href="https://linkedin.com/in/angga-qomaruzzaman" target="_blank" aria-label="LinkedIn"
                             class="social-btn w-12 h-12 rounded-full bg-white dark:bg-neutral-900 flex items-center justify-center text-neutral-500 hover:bg-[#0077b5] hover:text-white dark:hover:bg-[#0077b5] dark:hover:text-white hover:border-transparent shadow-sm border border-neutral-200 dark:border-neutral-800">
                             <i class="fa-brands fa-linkedin-in text-lg"></i>
                         </a>
-                        <a href="https://github.com/anggaqomaruzzaman091-rgb" target="_blank"
+                        <a href="https://github.com/anggaqomaruzzaman091-rgb" target="_blank" aria-label="GitHub"
                             class="social-btn w-12 h-12 rounded-full bg-white dark:bg-neutral-900 flex items-center justify-center text-neutral-500 hover:bg-[#24292e] hover:text-white dark:hover:bg-white dark:hover:text-black hover:border-transparent shadow-sm border border-neutral-200 dark:border-neutral-800">
                             <i class="fa-brands fa-github text-lg"></i>
                         </a>
-                        <a href="mailto:anggaqomaruzzaman65@gmail.com"
+                        <a href="mailto:anggaqomaruzzaman65@gmail.com" aria-label="Email"
                             class="social-btn w-12 h-12 rounded-full bg-white dark:bg-neutral-900 flex items-center justify-center text-neutral-500 hover:bg-[#ea4335] hover:text-white dark:hover:bg-[#ea4335] dark:hover:text-white hover:border-transparent shadow-sm border border-neutral-200 dark:border-neutral-800">
                             <i class="fa-solid fa-envelope text-lg"></i>
                         </a>
@@ -432,8 +289,8 @@
                         onclick="document.getElementById('project-thumb-input-1').click(); event.stopPropagation();">
                         <i id="project-thumb-icon-1"
                             class="fa-solid fa-building text-6xl text-neutral-300 dark:text-neutral-800 group-hover:scale-110 transition duration-700"></i>
-                        <img id="project-thumb-img-1" src="" class="absolute inset-0 w-full h-full object-cover hidden"
-                            alt="Project 1 Logo">
+                        <img id="project-thumb-img-1" src=""
+                            class="absolute inset-0 w-full h-full object-contain p-4 hidden" alt="Project 1 Logo">
 
                         <div class="absolute bottom-4 left-4 flex gap-2">
                             <span
@@ -466,8 +323,8 @@
                         onclick="document.getElementById('project-thumb-input-2').click(); event.stopPropagation();">
                         <i id="project-thumb-icon-2"
                             class="fa-solid fa-shield-halved text-6xl text-neutral-300 dark:text-neutral-800 group-hover:scale-110 transition duration-700"></i>
-                        <img id="project-thumb-img-2" src="" class="absolute inset-0 w-full h-full object-cover hidden"
-                            alt="Project 2 Logo">
+                        <img id="project-thumb-img-2" src=""
+                            class="absolute inset-0 w-full h-full object-contain p-4 hidden" alt="Project 2 Logo">
 
                         <div class="absolute bottom-4 left-4 flex gap-2">
                             <span
@@ -500,8 +357,8 @@
                         onclick="document.getElementById('project-thumb-input-3').click(); event.stopPropagation();">
                         <i id="project-thumb-icon-3"
                             class="fa-solid fa-boxes-stacked text-6xl text-neutral-300 dark:text-neutral-800 group-hover:scale-110 transition duration-700"></i>
-                        <img id="project-thumb-img-3" src="" class="absolute inset-0 w-full h-full object-cover hidden"
-                            alt="Project 3 Logo">
+                        <img id="project-thumb-img-3" src=""
+                            class="absolute inset-0 w-full h-full object-contain p-4 hidden" alt="Project 3 Logo">
 
                         <div class="absolute bottom-4 left-4 flex gap-2">
                             <span
@@ -545,7 +402,7 @@
                     </h2>
                 </div>
 
-                <div class="border-l border-neutral-300 dark:border-neutral-800 ml-6 pl-10 space-y-12">
+                <div class="border-l border-neutral-300 dark:border-neutral-800 ml-6 pl-12 space-y-12">
 
                     <div class="relative timeline-wrapper group reveal cursor-pointer"
                         onclick="openProjectPage('exp-kyoraku')">
@@ -614,7 +471,7 @@
                     <h2 class="font-display text-3xl font-bold text-neutral-900 dark:text-neutral-100">Credentials</h2>
                 </div>
 
-                <div class="border-l border-neutral-300 dark:border-neutral-800 ml-6 pl-10 space-y-12">
+                <div class="border-l border-neutral-300 dark:border-neutral-800 ml-6 pl-12 space-y-12">
                     <div class="relative timeline-wrapper group reveal cursor-pointer"
                         onclick="openProjectPage('edu-upb')">
                         <!-- Image Logo as the bullet node -->
@@ -743,286 +600,9 @@
         </div>
     </div>
 
-    <!-- SCRIPT -->
-    <script>
-        // Theme Toggle
-        const themeBtn = document.getElementById('theme-toggle');
-        themeBtn.addEventListener('click', () => {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-            }
-        });
-
-        // Scroll Reveal
-        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-        }, observerOptions);
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // Owner functionality: hero & cv
-        const heroInput = document.getElementById('hero-image-input');
-        const heroImage = document.getElementById('hero-image');
-        heroInput.addEventListener('change', function (e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) { heroImage.src = e.target.result; }
-                reader.readAsDataURL(file);
-            }
-        });
-
-        const cvBtn = document.getElementById('cv-btn');
-        const cvInput = document.getElementById('cv-file-input');
-        const cvText = document.getElementById('cv-btn-text');
-        cvBtn.addEventListener('click', () => cvInput.click());
-        cvInput.addEventListener('change', function (e) {
-            const file = e.target.files[0];
-            if (file) {
-                cvText.innerText = "CV Attached: " + file.name;
-                cvBtn.classList.add('bg-accent-light', 'text-white');
-            }
-        });
-
-        // Modal Gallery CRM
-        const galleryInputs = [
-            document.getElementById('gallery-input-1'),
-            document.getElementById('gallery-input-2'),
-            document.getElementById('gallery-input-3')
-        ];
-        galleryInputs.forEach((input, index) => {
-            input.addEventListener('change', function (e) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        const imgSlot = document.getElementById('gallery-img-' + (index + 1));
-                        const iconSlot = document.getElementById('gallery-icon-' + (index + 1));
-                        const spanSlot = document.getElementById('gallery-span-' + (index + 1));
-                        if (imgSlot) {
-                            imgSlot.src = e.target.result;
-                            imgSlot.classList.remove('hidden');
-                            if (iconSlot) iconSlot.classList.add('hidden');
-                            if (spanSlot) spanSlot.classList.add('hidden');
-                        }
-                    }
-                    reader.readAsDataURL(file);
-                }
-            });
-        });
-
-        // Thumb CRM
-        const thumbInputs = [
-            document.getElementById('project-thumb-input-1'),
-            document.getElementById('project-thumb-input-2'),
-            document.getElementById('project-thumb-input-3')
-        ];
-        thumbInputs.forEach((input, index) => {
-            input.addEventListener('change', function (e) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        const imgSlot = document.getElementById('project-thumb-img-' + (index + 1));
-                        const iconSlot = document.getElementById('project-thumb-icon-' + (index + 1));
-                        if (imgSlot) {
-                            imgSlot.src = e.target.result;
-                            imgSlot.classList.remove('hidden');
-                            if (iconSlot) iconSlot.classList.add('hidden');
-                        }
-                    }
-                    reader.readAsDataURL(file);
-                }
-            });
-        });
-
-        // Combined Data Object
-        const modalData = {
-            // Portfolio Projects
-            'flux-hris': {
-                title: 'Flux HRIS',
-                tag: 'Enterprise App',
-                imageIcon: 'fa-building',
-                description: 'Enterprise HR logistics platform built for Indonesian companies. Manages employee exit permits with digital approval chains, company vehicle booking, real-time notifications via WebSocket, and a QR code scanner for security checkpoints. Full admin dashboard with analytics.',
-                techStack: ['React.js', 'FastAPI', 'MongoDB', 'Tailwind CSS', 'WebSocket', 'EasyOCR'],
-                githubUrl: 'https://github.com/ZiQax/new-hrga-app',
-                liveUrl: '#'
-            },
-            'findjol': {
-                title: 'FindJol',
-                tag: 'Cybersecurity',
-                description: 'Cybersecurity tool that scans KTP using offline PyTorch OCR to detect identity theft from illegal online loans. Auto-generates formal OJK dispute letters.',
-                imageIcon: 'fa-shield-halved',
-                techStack: ['React + Vite', 'FastAPI', 'PyTorch OCR', 'MongoDB', 'Tailwind'],
-                githubUrl: 'https://github.com/anggaqomaruzzaman091-rgb/finjol',
-                liveUrl: '#'
-            },
-            'inventory': {
-                title: 'Smart Inventory System',
-                tag: 'Automation & AI',
-                imageIcon: 'fa-boxes-stacked',
-                description: 'Web-based inventory management on the Google ecosystem. Built with Gemini AI for intelligent stock predictions and automated reporting via Google Sheets.',
-                techStack: ['Google Apps Script', 'Google Sheets API', 'Gemini AI', 'Tailwind CSS'],
-                githubUrl: '#',
-                liveUrl: 'https://script.google.com/macros/s/AKfycby5ugei7nYNg28umwXEKBMFwNtCnxe6nOcuzDf_0Zv0/dev'
-            },
-
-            // Experience & Credentials
-            'exp-kyoraku': {
-                title: 'IT Helpdesk & HRGA Admin',
-                tag: 'Experience',
-                imageIcon: 'fa-network-wired',
-                description: 'Responsible for monitoring IT infrastructure at PT. Kyoraku Blowmolding Indonesia. Roles include performing regular hardware and software maintenance, setting up network configurations, and assisting HRGA with administrative workflows and employee data management.',
-                techStack: ['Network Administration', 'Hardware Troubleshooting', 'System Operations', 'Microsoft Office'],
-                githubUrl: '#',
-                liveUrl: '#'
-            },
-            'exp-freelance': {
-                title: 'Fullstack Developer (Freelance)',
-                tag: 'Experience',
-                imageIcon: 'fa-code',
-                description: 'Collaborated remotely as a freelance developer on Harisenin.com. Tasks involved creating responsive user interfaces, designing RESTful APIs, and implementing robust backend architecture utilizing NodeJS and MongoDB for scaling applications.',
-                techStack: ['Node.js', 'React.js', 'MongoDB', 'REST APIs', 'Agile Methodology'],
-                githubUrl: '#',
-                liveUrl: '#'
-            },
-            'edu-upb': {
-                title: 'Teknik Informatika (S1)',
-                tag: 'Education',
-                imageIcon: 'fa-university',
-                description: 'Currently pursuing a Bachelor of Science in Informatics Engineering at Universitas Pelita Bangsa. Focusing on algorithms, data structures, software engineering principles, and artificial intelligence.',
-                techStack: ['Algorithms', 'Software Engineering', 'Data Structures', 'Database Design'],
-                githubUrl: '#',
-                liveUrl: '#'
-            },
-            'cert-bnsp': {
-                title: 'Web Developer (BNSP)',
-                tag: 'Certification',
-                imageIcon: 'fa-certificate',
-                description: 'Professional Web Developer certification recognized by Badan Nasional Sertifikasi Profesi (BNSP), verifying industry-standard competencies in frontend and backend web development methodologies.',
-                techStack: ['Web Standards', 'Security Practices', 'Fullstack Architecture'],
-                githubUrl: '#',
-                liveUrl: '#'
-            },
-            'cert-harisenin': {
-                title: 'Full-stack JS Developer',
-                tag: 'Certification',
-                imageIcon: 'fa-award',
-                description: 'Intensive Full-stack Javascript bootcamp certification from Harisenin.com. Demonstrated proficiency in building end-to-end web applications using the MERN stack.',
-                techStack: ['MongoDB', 'Express.js', 'React.js', 'Node.js'],
-                githubUrl: '#',
-                liveUrl: '#'
-            }
-        };
-
-        const modal = document.getElementById('project-modal');
-        const modalBody = document.getElementById('modal-body');
-        const modalTag = document.getElementById('modal-project-tag');
-
-        function openProjectPage(projectId) {
-            const data = modalData[projectId];
-            if (!data) return;
-
-            modalTag.innerText = data.tag;
-
-            const techStackHtml = data.techStack.map(tech =>
-                `<span class="px-3 py-1.5 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-md text-xs font-medium text-neutral-600 dark:text-neutral-300 shadow-sm">${tech}</span>`
-            ).join('');
-
-            let buttonsHtml = '';
-            if (data.githubUrl !== '#') {
-                buttonsHtml += `<a href="${data.githubUrl}" target="_blank" class="px-8 py-4 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200 font-bold text-sm transition-all duration-300 flex items-center gap-2 shadow-sm hover:scale-105">
-                    <i class="fa-brands fa-github"></i> Repository
-                </a>`;
-            }
-            if (data.liveUrl !== '#') {
-                buttonsHtml += `<a href="${data.liveUrl}" target="_blank" class="px-8 py-4 rounded-xl bg-accent-light hover:bg-indigo-700 text-white font-bold text-sm transition-all duration-300 flex items-center gap-2 shadow-lg shadow-accent-light/20 hover:scale-105">
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
-                </a>`;
-            }
-
-            modalBody.innerHTML = `
-                <div class="w-full max-w-7xl px-6 py-16 flex flex-col items-center">
-                    
-                    <div class="flex flex-col-reverse lg:flex-row items-center justify-between w-full gap-16 mb-20">
-                        <!-- Left: Text -->
-                        <div class="lg:w-1/2 text-left">
-                            <h2 class="text-4xl md:text-6xl font-display font-bold text-neutral-900 dark:text-neutral-100 mb-6">${data.title}</h2>
-                            <h3 class="text-2xl font-bold text-neutral-800 dark:text-neutral-200 mb-4">Overview</h3>
-                            <p class="text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8 text-lg">${data.description}</p>
-                            
-                            <h4 class="text-sm font-semibold text-neutral-500 uppercase tracking-wider mb-4">Highlights & Tech</h4>
-                            <div class="flex flex-wrap gap-2">
-                                ${techStackHtml}
-                            </div>
-                        </div>
-
-                        <!-- Right: Hero Icon -->
-                        <div class="lg:w-1/2 flex justify-center lg:justify-end">
-                            <div class="w-64 h-64 md:w-96 md:h-96 rounded-3xl bg-white dark:bg-neutral-900 flex items-center justify-center text-neutral-300 dark:text-neutral-800 text-8xl md:text-9xl shadow-2xl border border-neutral-100 dark:border-neutral-800 animate-float">
-                                <i class="fa-solid ${data.imageIcon}"></i>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="w-full h-px bg-neutral-200 dark:bg-neutral-800 mb-20"></div>
-
-                    <!-- Additional Section: Gallery (CRM Uploadable) -->
-                    <div class="w-full mb-20">
-                        <h3 class="text-3xl font-display font-bold text-neutral-900 dark:text-neutral-100 mb-10 text-center">Gallery</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            
-                            <div class="group h-64 rounded-2xl bg-neutral-200 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 flex flex-col items-center justify-center text-neutral-400 dark:text-neutral-600 shadow-sm cursor-pointer relative overflow-hidden transition-all duration-300 hover:border-accent-light" onclick="document.getElementById('gallery-input-1').click()">
-                                <img id="gallery-img-1" src="" class="absolute inset-0 w-full h-full object-cover hidden" alt="Feature 1">
-                                <i id="gallery-icon-1" class="fa-solid fa-image text-3xl mb-2"></i>
-                                <span id="gallery-span-1" class="text-sm font-medium">Image 1</span>
-                                <div class="absolute inset-0 bg-neutral-900/60 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm">
-                                    <i class="fa-solid fa-upload text-2xl text-white mb-2"></i>
-                                    <span class="text-white text-xs font-medium">Upload Image (Owner)</span>
-                                </div>
-                            </div>
-                            
-                            <div class="group h-64 rounded-2xl bg-neutral-200 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 flex flex-col items-center justify-center text-neutral-400 dark:text-neutral-600 shadow-sm cursor-pointer relative overflow-hidden transition-all duration-300 hover:border-accent-light" onclick="document.getElementById('gallery-input-2').click()">
-                                <img id="gallery-img-2" src="" class="absolute inset-0 w-full h-full object-cover hidden" alt="Feature 2">
-                                <i id="gallery-icon-2" class="fa-solid fa-image text-3xl mb-2"></i>
-                                <span id="gallery-span-2" class="text-sm font-medium">Image 2</span>
-                                <div class="absolute inset-0 bg-neutral-900/60 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm">
-                                    <i class="fa-solid fa-upload text-2xl text-white mb-2"></i>
-                                    <span class="text-white text-xs font-medium">Upload Image (Owner)</span>
-                                </div>
-                            </div>
-                            
-                            <div class="group h-64 rounded-2xl bg-neutral-200 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 flex flex-col items-center justify-center text-neutral-400 dark:text-neutral-600 shadow-sm cursor-pointer relative overflow-hidden transition-all duration-300 hover:border-accent-light" onclick="document.getElementById('gallery-input-3').click()">
-                                <img id="gallery-img-3" src="" class="absolute inset-0 w-full h-full object-cover hidden" alt="Feature 3">
-                                <i id="gallery-icon-3" class="fa-solid fa-image text-3xl mb-2"></i>
-                                <span id="gallery-span-3" class="text-sm font-medium">Image 3</span>
-                                <div class="absolute inset-0 bg-neutral-900/60 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm">
-                                    <i class="fa-solid fa-upload text-2xl text-white mb-2"></i>
-                                    <span class="text-white text-xs font-medium">Upload Image (Owner)</span>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    ${buttonsHtml ? `<div class="flex flex-wrap justify-center gap-6 mt-10">${buttonsHtml}</div>` : ''}
-
-                </div>
-            `;
-
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeProjectPage() {
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-    </script>
+    <!-- SCRIPTS -->
+    <script src="./assets/js/data.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
