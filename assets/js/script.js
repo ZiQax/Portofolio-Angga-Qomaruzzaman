@@ -102,13 +102,53 @@ document.addEventListener('DOMContentLoaded', () => {
     const cvBtn = document.getElementById('cv-btn');
     const cvInput = document.getElementById('cv-file-input');
     const cvText = document.getElementById('cv-btn-text');
+    const cvChangeBtn = document.getElementById('cv-change-btn');
+
+    function setupCvDownload() {
+        const cvData = localStorage.getItem('cms_cv_data');
+        const cvName = localStorage.getItem('cms_cv_name');
+
+        if (cvData && cvName) {
+            cvText.innerText = "Download CV";
+            cvBtn.classList.add('border-accent-light', 'text-accent-light', 'dark:text-accent-dark');
+            if (cvChangeBtn) cvChangeBtn.classList.remove('hidden');
+
+            cvBtn.onclick = function (e) {
+                e.preventDefault();
+                const a = document.createElement('a');
+                a.href = cvData;
+                a.download = cvName;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }
+        } else {
+            cvBtn.onclick = function (e) {
+                e.preventDefault();
+                cvInput.click();
+            }
+        }
+    }
+
     if (cvBtn && cvInput && cvText) {
-        cvBtn.addEventListener('click', () => cvInput.click());
+        setupCvDownload();
+
         cvInput.addEventListener('change', function (e) {
             const file = e.target.files[0];
             if (file) {
-                cvText.innerText = "CV Attached: " + file.name;
-                cvBtn.classList.add('bg-accent-light', 'text-white');
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    try {
+                        localStorage.setItem('cms_cv_data', event.target.result);
+                        localStorage.setItem('cms_cv_name', file.name);
+                        setupCvDownload();
+                        alert("CV saved to local storage! Visitors can now download it.");
+                    } catch (err) {
+                        console.error(err);
+                        alert("File is too large for Local Storage (max 5MB limit). Try a smaller PDF.");
+                    }
+                }
+                reader.readAsDataURL(file);
             }
         });
     }

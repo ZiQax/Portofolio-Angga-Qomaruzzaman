@@ -159,12 +159,19 @@
                             class="px-8 py-4 rounded-full bg-accent-light text-white hover:bg-indigo-700 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-200 font-semibold text-sm tracking-wide transition flex justify-center items-center gap-2 shadow-lg shadow-accent-light/20">
                             Connect With Me <i class="fa-solid fa-arrow-right"></i>
                         </a>
-                        <button id="cv-btn"
-                            class="px-8 py-4 rounded-full bg-white border border-neutral-200 hover:bg-neutral-50 text-neutral-700 dark:bg-neutral-900 dark:border-neutral-800 dark:hover:bg-neutral-800 dark:text-neutral-200 font-semibold text-sm tracking-wide transition flex justify-center items-center gap-2 group shadow-sm">
-                            <i
-                                class="fa-solid fa-paperclip group-hover:-translate-y-0.5 transition text-accent-light dark:text-accent-dark"></i>
-                            <span id="cv-btn-text">Attach CV</span>
-                        </button>
+                        <div class="relative inline-flex group/cv">
+                            <button id="cv-btn"
+                                class="px-8 py-4 rounded-full bg-white border border-neutral-200 hover:bg-neutral-50 text-neutral-700 dark:bg-neutral-900 dark:border-neutral-800 dark:hover:bg-neutral-800 dark:text-neutral-200 font-semibold text-sm tracking-wide transition flex justify-center items-center gap-2 group shadow-sm">
+                                <i
+                                    class="fa-solid fa-file-pdf group-hover:-translate-y-0.5 transition text-accent-light dark:text-accent-dark"></i>
+                                <span id="cv-btn-text">Attach CV (Owner)</span>
+                            </button>
+                            <button id="cv-change-btn" onclick="document.getElementById('cv-file-input').click()"
+                                title="Change CV"
+                                class="absolute -right-2 -top-2 w-8 h-8 bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover/cv:opacity-100 transition-opacity hidden z-10 hover:scale-110">
+                                <i class="fa-solid fa-pen text-xs"></i>
+                            </button>
+                        </div>
                     </div>
 
                     <div class="mt-12 flex items-center gap-6 justify-center lg:justify-start">
@@ -565,10 +572,14 @@
         <div class="max-w-7xl mx-auto px-6 flex flex-col items-center">
             <h2 class="font-display text-2xl font-bold mb-6 text-neutral-900 dark:text-neutral-100">Let's Build
                 Something <span class="text-accent-light dark:text-accent-dark">Amazing</span></h2>
-            <div class="flex gap-4 mb-8">
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
                 <a href="mailto:anggaqomaruzzaman65@gmail.com"
-                    class="px-6 py-3 rounded-lg bg-neutral-100 text-neutral-800 hover:bg-[#ea4335] hover:text-white dark:bg-neutral-900 dark:text-neutral-200 dark:hover:bg-[#ea4335] dark:hover:text-white transition-all duration-300 font-medium border border-neutral-200 dark:border-neutral-800 hover:border-transparent flex items-center gap-2">
+                    class="px-6 py-3 rounded-lg bg-neutral-100 text-neutral-800 hover:bg-[#ea4335] hover:text-white dark:bg-neutral-900 dark:text-neutral-200 dark:hover:bg-[#ea4335] dark:hover:text-white transition-all duration-300 font-medium border border-neutral-200 dark:border-neutral-800 hover:border-transparent flex items-center gap-2 shadow-sm">
                     <i class="fa-solid fa-envelope"></i> Email Me
+                </a>
+                <a href="https://wa.me/" target="_blank"
+                    class="px-6 py-3 rounded-lg bg-neutral-100 text-neutral-800 hover:bg-[#25D366] hover:text-white dark:bg-neutral-900 dark:text-neutral-200 dark:hover:bg-[#25D366] dark:hover:text-white transition-all duration-300 font-medium border border-neutral-200 dark:border-neutral-800 hover:border-transparent flex items-center gap-2 shadow-sm">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> WhatsApp
                 </a>
             </div>
             <p class="text-neutral-500 dark:text-neutral-600 text-sm">© 2026 Angga Qomaruzzaman. All rights reserved.
